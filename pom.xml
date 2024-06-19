@@ -8,6 +8,9 @@
     <artifactId>funding</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+
+
     <!-- 配置在父工程中要管理的依赖 -->
     <dependencyManagement>
         <dependencies>
@@ -16,18 +19,18 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-orm</artifactId>
-                <version>${atguigu.spring.version}</version>
+                <version>${zh.spring.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>${atguigu.spring.version}</version>
+                <version>${zh.spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>${atguigu.spring.version}</version>
+                <version>${zh.spring.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
             <dependency>
@@ -168,6 +171,8 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 声明属性，对Spring的版本进行统一管理 -->
+        <zh.spring.version>4.3.20.RELEASE</zh.spring.version>
     </properties>
 
 </project>
