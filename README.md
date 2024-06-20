@@ -12,3 +12,11 @@ mvn mybatis-generator:generate
 ```
 ## 2nd day 
 ResultEntity, request type judge, exception handle, js page;
+
+Tomcat 404 can't work, because servlet:2.5 and jsp:2.1.3 are too old;
+
+[Tomcat support version](https://tomcat.apache.org/whichversion.html)
+
+then download version 9x;
+
+Mybatis Generator make 5 repeat context in AdminMapper.xml;->delete->run success
