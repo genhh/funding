@@ -1,6 +1,7 @@
-# funding
-a web for Crowdfunding
-- 1st day: create project and install dependencies
+# CrowdFunding
+a web for Crowdfunding 
+## 1st day
+create project and install dependencies
 - springMVC+mybatis+jsp+jQuery+SmartTomcat
 ```bash
 # mysql
@@ -9,3 +10,5 @@ source creat.sql
 # in reverse dir
 mvn mybatis-generator:generate 
 ```
+## 2nd day 
+ResultEntity, request type judge, exception handle, js page;
