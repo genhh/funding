@@ -12,5 +12,5 @@ public interface AdminService {
 
     Admin getAdminByLoginAcct(String loginAcct, String userPswd);
 
-    PageInfo<Admin> getPageInfo();
+    PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize);
 }

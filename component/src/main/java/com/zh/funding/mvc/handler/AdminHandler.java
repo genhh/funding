@@ -45,7 +45,9 @@ public class AdminHandler {
 
                               ModelMap modelMap) {
 
-        PageInfo<Admin> pageInfo = adminService.getPageInfo();
-        return "";
+        PageInfo<Admin> pageInfo = adminService.getPageInfo(keyword, pageNum, pageSize);
+        modelMap.addAttribute(CrowdConstant.ATTR_NAME_PAGE_INFO, pageInfo);
+
+        return "admin-page";
     }
 }
