@@ -1,5 +1,6 @@
 package com.zh.funding.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zh.funding.constant.CrowdConstant;
 import com.zh.funding.entity.Admin;
@@ -61,8 +62,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public PageInfo<Admin> getPageInfo() {
-        return null;
+    public PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+
+        List<Admin> list = adminMapper.selectAdminByKeyword(keyword);
+
+        return new PageInfo<>(list);
     }
 
 }
