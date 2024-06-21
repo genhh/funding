@@ -23,6 +23,7 @@
     <build>
 
         <!-- 构建过程中用到的插件 -->
+        <pluginManagement>
         <plugins>
 
             <!-- 具体插件，逆向工程的操作是以构建过程中插件形式出现的 -->
@@ -57,6 +58,8 @@
                 </dependencies>
             </plugin>
         </plugins>
+        </pluginManagement>
+
     </build>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
