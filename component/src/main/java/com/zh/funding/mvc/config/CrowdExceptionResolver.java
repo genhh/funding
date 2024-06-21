@@ -2,6 +2,7 @@ package com.zh.funding.mvc.config;
 
 
 import com.google.gson.Gson;
+import com.zh.funding.exception.AccessForbiddenException;
 import com.zh.funding.util.ResultEntity;
 import com.zh.funding.util.CrowdUtil;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//exception mapping view
 @ControllerAdvice
 public class CrowdExceptionResolver {
     @ExceptionHandler(value = {ArithmeticException.class,NullPointerException.class})
@@ -23,6 +25,19 @@ public class CrowdExceptionResolver {
     ) throws IOException {
 
         String viewName = "system-error";
+
+        return commonResolve(viewName, exception, request, response);
+    }
+
+    // 基于注解/spring-web-mvc.xml的异常映射，用一种就可以
+    @ExceptionHandler(value = AccessForbiddenException.class)
+    public ModelAndView resolveAccessForbiddenException(
+            AccessForbiddenException exception,
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+
+        String viewName = "admin-login";
 
         return commonResolve(viewName, exception, request, response);
     }

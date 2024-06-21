@@ -43,5 +43,5 @@
 		});
 	});
 </script>
-<title>尚筹网</title>
+<title>爱筹网</title>
 </head>
