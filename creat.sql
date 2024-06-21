@@ -11,3 +11,4 @@ email varchar(255) not null, # 邮件地址
 create_time char(19), # 创建时间
 primary key (id)
 );
+insert into t_admin  values(1,'admin','E10ADC3949BA59ABBE56E057F20F883E','testAdminer','222@examp.com','4-4');
