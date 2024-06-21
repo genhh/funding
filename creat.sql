@@ -1,14 +1,14 @@
 CREATE DATABASE IF NOT EXISTS `project_crowd`  CHARACTER SET utf8;
-use project_crowd;
-drop table if exists t_admin;
-create table t_admin
+USE project_crowd;
+DROP TABLE if EXISTS t_admin;
+CREATE TABLE t_admin
 (
-id int not null auto_increment, # 主键
-login_acct varchar(255) not null, # 登录账号
-user_pswd char(32) not null, # 登录密码
-user_name varchar(255) not null, # 昵称
-email varchar(255) not null, # 邮件地址
+id int NOT NULL auto_increment, # 主键
+login_acct varchar(255) NOT NULL, # 登录账号
+user_pswd char(32) NOT NULL, # 登录密码
+user_name varchar(255) NOT NULL, # 昵称
+email varchar(255) NOT NULL, # 邮件地址
 create_time char(19), # 创建时间
-primary key (id)
+PRIMARY KEY (id)
 );
-insert into t_admin  values(1,'admin','E10ADC3949BA59ABBE56E057F20F883E','testAdminer','222@examp.com','4-4');
+INSERT INTO t_admin  VALUES(1,'admin','E10ADC3949BA59ABBE56E057F20F883E','testAdminer','222@examp.com','4-4');
