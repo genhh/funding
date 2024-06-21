@@ -10,6 +10,8 @@ import com.zh.funding.exception.LoginFailedException;
 import com.zh.funding.mapper.AdminMapper;
 import com.zh.funding.service.api.AdminService;
 import com.zh.funding.util.CrowdUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +68,9 @@ public class AdminServiceImpl implements AdminService {
         PageHelper.startPage(pageNum, pageSize);
 
         List<Admin> list = adminMapper.selectAdminByKeyword(keyword);
+
+        Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
+        logger.debug("adminList 全类名:"+list.getClass().getName());
 
         return new PageInfo<>(list);
     }
