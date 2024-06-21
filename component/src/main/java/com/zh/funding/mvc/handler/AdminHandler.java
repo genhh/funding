@@ -1,11 +1,14 @@
 package com.zh.funding.mvc.handler;
 
+import com.github.pagehelper.PageInfo;
 import com.zh.funding.constant.CrowdConstant;
 import com.zh.funding.entity.Admin;
 import com.zh.funding.service.api.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,5 +30,22 @@ public class AdminHandler {
     public String doLogout(HttpSession session) {
         session.invalidate();
         return "redirect:/admin/to/login/page.html";
+    }
+
+    @RequestMapping("/admin/get/page.html")
+    public String getPageInfo(
+                              // keyword默认值使用空字符串，和SQL语句配合实现两种情况适配
+                              @RequestParam(value="keyword", defaultValue="") String keyword,
+
+                              // pageNum默认值使用1
+                              @RequestParam(value="pageNum", defaultValue="1") Integer pageNum,
+
+                              // pageSize默认值使用5
+                              @RequestParam(value="pageSize", defaultValue="5") Integer pageSize,
+
+                              ModelMap modelMap) {
+
+        PageInfo<Admin> pageInfo = adminService.getPageInfo();
+        return "";
     }
 }
