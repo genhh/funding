@@ -20,3 +20,8 @@ Tomcat 404 can't work, because servlet:2.5 and jsp:2.1.3 are too old;
 then download version 9x;
 
 Mybatis Generator make 5 repeat context in AdminMapper.xml;->delete->run success
+
+## 3rd day
+It's easier to coding when you follow controller->service->dao's order.--Top-down approach;
+
+DB navigator plugin not work;

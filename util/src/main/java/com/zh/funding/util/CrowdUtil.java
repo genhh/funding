@@ -12,4 +12,8 @@ public class CrowdUtil {
         return (reqHeader!=null && reqHeader.contains("application/json")) ||
                 (xReqHeader!=null && xReqHeader.equals("XMLHttpRequest"));
     }
+
+    public static String md5(String userPswd) {
+        return ;
+    }
 }
