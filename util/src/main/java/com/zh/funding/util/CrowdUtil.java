@@ -1,6 +1,11 @@
 package com.zh.funding.util;
 
+import com.zh.funding.constant.CrowdConstant;
+
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 public class CrowdUtil {
@@ -13,7 +18,28 @@ public class CrowdUtil {
                 (xReqHeader!=null && xReqHeader.equals("XMLHttpRequest"));
     }
 
-    public static String md5(String userPswd) {
-        return ;
+    public static String md5(String source) {
+        if(source == null || source.isEmpty()) {
+            throw new RuntimeException(CrowdConstant.MESSAGE_STRING_INVALIDATE);
+        }
+
+        try {
+            String algorithm = "md5";
+            MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
+            byte[] input = source.getBytes();
+            byte[] output = messageDigest.digest(input);
+
+            int signum = 1;
+            BigInteger bigInteger = new BigInteger(signum, output);
+            //convert to 16 Hex
+            int radix = 16;
+            String encoded = bigInteger.toString(radix).toUpperCase();
+
+            return encoded;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
