@@ -1,5 +1,6 @@
 package com.zh.funding.service.impl;
 
+import com.github.pagehelper.PageInfo;
 import com.zh.funding.constant.CrowdConstant;
 import com.zh.funding.entity.Admin;
 import com.zh.funding.entity.AdminExample;
@@ -58,4 +59,10 @@ public class AdminServiceImpl implements AdminService {
 
         return admin;
     }
+
+    @Override
+    public PageInfo<Admin> getPageInfo() {
+        return null;
+    }
+
 }

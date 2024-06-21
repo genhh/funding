@@ -2,7 +2,7 @@
 a web for Crowdfunding 
 ## 1st day
 create project and install dependencies
-- springMVC+mybatis+jsp+jQuery+SmartTomcat+zTree+layer弹层
+- springMVC+mybatis+jsp+jQuery+SmartTomcat+zTree+layer弹层+pageHelper
 ```bash
 # mysql
 mysql -u root -p
