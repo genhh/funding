@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.net.http.HttpRequest;
 
 @Controller
 public class AdminHandler {
@@ -49,5 +50,12 @@ public class AdminHandler {
         modelMap.addAttribute(CrowdConstant.ATTR_NAME_PAGE_INFO, pageInfo);
 
         return "admin-page";
+    }
+
+    @RequestMapping("/admin/save.html")
+    public String save(Admin admin){
+
+        adminService.saveAdmin(admin);
+        return "redirect:/admin/get/page.html?pageNum="+Integer.MAX_VALUE;
     }
 }
