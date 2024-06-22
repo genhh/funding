@@ -42,4 +42,4 @@ PageHelper plugin config error in spring-persist-mybatis.xml;
 
 mybatis error:xxx with invalid types () or values ().->(忘了写无参构造函数)提供了其他有参数的构造方法的话，虚拟机就不再为你提供默认构造方法，这时必须手动把无参构造器写在代码里
 
-完成功能:分页显示账户信息, 添加、删除账户
+完成功能:分页显示账户信息, 添加、更新账户
