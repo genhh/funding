@@ -29,4 +29,6 @@ public interface AdminMapper {
     int updateByPrimaryKey(Admin record);
 
     List<Admin> selectAdminByKeyword(String keyword);
+
+    void selectAdminByPrimaryKey(String keyword);
 }
