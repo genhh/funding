@@ -26,6 +26,7 @@ It's easier to coding when you follow controller->service->dao's order.--Top-dow
 
 DB navigator plugin not work;
 
-PageHelper plugin config error in spring-persist-mybatis.xml;->seem not effect work;
+## 44h day
+PageHelper plugin config error in spring-persist-mybatis.xml;->page plugin and search not work;
 
 mybatis error:xxx with invalid types () or values ().->(忘了写无参构造函数)提供了其他有参数的构造方法的话，虚拟机就不再为你提供默认构造方法，这时必须手动把无参构造器写在代码里
