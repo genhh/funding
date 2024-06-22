@@ -13,6 +13,22 @@ public class Admin {
 
     private String createTime;
 
+    public Admin(Integer id, String loginAcct, String userPswd, String userName, String email, String createTime) {
+        super();
+        this.id = id;
+        this.loginAcct = loginAcct;
+        this.userPswd = userPswd;
+        this.userName = userName;
+        this.email = email;
+        this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin [id=" + id + ", loginAcct=" + loginAcct + ", userPswd=" + userPswd + ", userName=" + userName
+                + ", email=" + email + ", createTime=" + createTime + "]";
+    }
+
     public Integer getId() {
         return id;
     }
