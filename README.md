@@ -25,3 +25,5 @@ Mybatis Generator make 5 repeat context in AdminMapper.xml;->delete->run success
 It's easier to coding when you follow controller->service->dao's order.--Top-down approach;
 
 DB navigator plugin not work;
+
+PageHelper plugin config error in spring-persist-mybatis.xml;->seem not effect work;
