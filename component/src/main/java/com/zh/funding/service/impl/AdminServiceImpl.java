@@ -7,6 +7,7 @@ import com.zh.funding.entity.Admin;
 import com.zh.funding.entity.AdminExample;
 import com.zh.funding.entity.AdminExample.Criteria;
 import com.zh.funding.exception.LoginAcctAlreadyInUseException;
+import com.zh.funding.exception.LoginAcctAlreadyInUseForUpdateException;
 import com.zh.funding.exception.LoginFailedException;
 import com.zh.funding.mapper.AdminMapper;
 import com.zh.funding.service.api.AdminService;
@@ -100,6 +101,26 @@ public class AdminServiceImpl implements AdminService {
         logger.debug("adminList 全类名:"+list.getClass().getName());
 
         return new PageInfo<>(list);
+    }
+
+    @Override
+    public Admin getAdminById(Integer id) {
+        return adminMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void updateAdmin(Admin admin) {
+        try {
+            adminMapper.updateByPrimaryKeySelective(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            logger.info("异常全类名="+e.getClass().getName());
+
+            if(e instanceof DuplicateKeyException) {
+                throw new LoginAcctAlreadyInUseForUpdateException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+            }
+        }
     }
 
 }

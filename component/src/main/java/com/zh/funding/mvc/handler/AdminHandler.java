@@ -58,4 +58,18 @@ public class AdminHandler {
         adminService.saveAdmin(admin);
         return "redirect:/admin/get/page.html?pageNum="+Integer.MAX_VALUE;
     }
+
+    @RequestMapping("/admin/to/edit/page.html")
+    public String getEditPage(@RequestParam("adminId") Integer adminId, ModelMap modelMap){
+        Admin admin = adminService.getAdminById(adminId);
+        modelMap.addAttribute("admin",admin);
+
+        return "admin-edit";
+    }
+
+    @RequestMapping("/admin/update.html")
+    public String updatePage(Admin admin, @RequestParam("pageNum") Integer pageNum, @RequestParam("keyword") String keyword){
+        adminService.updateAdmin(admin);
+        return "redirect:/admin/get/page.html?pageNum="+pageNum+"&keyword="+keyword;
+    }
 }
