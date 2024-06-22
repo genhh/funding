@@ -12,3 +12,4 @@ create_time char(19), # 创建时间
 PRIMARY KEY (id)
 );
 INSERT INTO t_admin  VALUES(1,'admin','E10ADC3949BA59ABBE56E057F20F883E','testAdminer','222@examp.com','4-4');
+ALTER TABLE `t_admin` ADD UNIQUE INDEX (`login_acct`);

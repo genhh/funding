@@ -21,18 +21,15 @@ jQuery.fn.pagination = function(maxentries, opts){
 		next_show_always:true,
 		callback:function(){return false;}
 	},opts||{});
-	
+
 	return this.each(function() {
 		/**
 		 * 计算最大分页显示数目
 		 */
 		function numPages() {
 			return Math.ceil(maxentries/opts.items_per_page);
-		}	
-		/**
-		 * 极端分页的起始和结束点，这取决于current_page 和 num_display_entries.
-		 * @返回 {数组(Array)}
-		 */
+		}
+
 		function getInterval()  {
 			var ne_half = Math.ceil(opts.num_display_entries/2);
 			var np = numPages();
@@ -41,7 +38,7 @@ jQuery.fn.pagination = function(maxentries, opts){
 			var end = current_page>ne_half?Math.min(current_page+ne_half, np):Math.min(opts.num_display_entries, np);
 			return [start,end];
 		}
-		
+
 		/**
 		 * 分页链接事件处理函数
 		 * @参数 {int} page_id 为新页码
@@ -60,7 +57,7 @@ jQuery.fn.pagination = function(maxentries, opts){
 			}
 			return continuePropagation;
 		}
-		
+
 		/**
 		 * 此函数将分页链接插入到容器元素中
 		 */
@@ -117,14 +114,14 @@ jQuery.fn.pagination = function(maxentries, opts){
 				for(var i=begin; i<np; i++) {
 					appendItem(i);
 				}
-				
+
 			}
 			// 产生 "Next"-链接
 			if(opts.next_text && (current_page < np-1 || opts.next_show_always)){
 				appendItem(current_page+1,{text:opts.next_text, classes:"next"});
 			}
 		}
-		
+
 		//从选项中提取current_page
 		var current_page = opts.current_page;
 		//创建一个显示条数和每页显示条数值
@@ -155,7 +152,7 @@ jQuery.fn.pagination = function(maxentries, opts){
 		// 所有初始化完成，绘制链接
 		drawLinks();
         // 回调函数
-        opts.callback(current_page, this);
+        // opts.callback(current_page, this);
 	});
 }
 
