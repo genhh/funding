@@ -3,6 +3,8 @@ package com.zh.funding.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zh.funding.entity.Role;
+import com.zh.funding.entity.RoleExample;
+import com.zh.funding.entity.RoleExample.Criteria;
 import com.zh.funding.mapper.RoleMapper;
 import com.zh.funding.service.api.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +37,17 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void updateRole(Role role) {
         roleMapper.updateByPrimaryKey(role);
+    }
+
+    @Override
+    public void removeRole(List<Integer> roleIdList) {
+        RoleExample example = new RoleExample();
+
+        Criteria criteria = example.createCriteria();
+
+        //delete from t_role where id in (5,8,12)
+        criteria.andIdIn(roleIdList);
+
+        roleMapper.deleteByExample(example);
     }
 }
