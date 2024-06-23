@@ -161,4 +161,8 @@
     set name = #{name,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectRoleByKeyword" resultMap="BaseResultMap">
+    select id, name from t_role
+    where name like concat("%",#{keyword},"%")
+  </select>
 </mapper>
