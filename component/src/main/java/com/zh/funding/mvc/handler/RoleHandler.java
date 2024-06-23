@@ -29,4 +29,13 @@ public class RoleHandler {
         // 封装到ResultEntity对象中返回（如果上面的操作抛出异常，交给异常映射机制处理）
         return ResultEntity.successWithData(pageInfo);
     }
+
+    @ResponseBody
+    @RequestMapping("/role/save.json")
+    public ResultEntity<String> saveRole(Role role) {
+
+        roleService.saveRole(role);
+
+        return ResultEntity.successWithoutData();
+    }
 }
