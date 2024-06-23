@@ -123,4 +123,10 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
+    @Override
+    public void remove(Integer adminId) {
+        adminMapper.deleteByPrimaryKey(adminId);
+    }
+
+
 }
