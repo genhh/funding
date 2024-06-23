@@ -58,4 +58,12 @@ public class Menu {
     public void setIcon(String icon) {
         this.icon = icon == null ? null : icon.trim();
     }
+
+    public List<Menu> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Menu> children) {
+        this.children = children;
+    }
 }
