@@ -4,7 +4,7 @@
 			  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 	<!-- mybatis-generator:generate -->
-	<context id="atguiguTables" targetRuntime="MyBatis3">
+	<context id="Tables" targetRuntime="MyBatis3">
 		<commentGenerator>
 			<!-- 是否去除自动生成的注释 true:是;false:否 -->
 			<property name="suppressAllComments" value="true" />
@@ -50,7 +50,7 @@
 		</javaClientGenerator>
 
 		<!-- 数据库表名字和我们的entity类对应的映射指定 -->
-		<table tableName="t_admin" domainObjectName="Admin" />
+		<table tableName="t_role" domainObjectName="Role" />
 
 	</context>
 </generatorConfiguration>
