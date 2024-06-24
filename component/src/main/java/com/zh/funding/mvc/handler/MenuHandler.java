@@ -36,4 +36,11 @@ public class MenuHandler {
         }
         return ResultEntity.successWithData(root);
     }
+
+    @ResponseBody
+    @RequestMapping("")
+    public ResultEntity<Menu> addMenu(Menu menu) {
+        menuService.addMenu(menu);
+        return ResultEntity.successWithoutData();
+    }
 }
