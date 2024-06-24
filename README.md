@@ -46,4 +46,10 @@ mybatis error:xxx with invalid types () or values ().->(忘了写无参构造函
 
 ## 5th day
 
-完成功能:删除账户(无提示直接删除); 角色分页，更新ing，删除ing, 查询用js实现; 菜单维护ing...
+周日开会
+
+完成功能:删除账户(无提示直接删除); 角色分页，更新ing，删除ing, 查询用js实现; 权限管理菜单展示
+
+## 6th day
+
+完成功能：添加菜单节点，
