@@ -174,9 +174,9 @@ function fillAuthTree() {
     "async":false
     });
     if(ajaxReturn.status != 200) {
-    layer.msg("请 求 处 理 出错 ！ 响 应 状 态 码 是 ： "+ajaxReturn.status+" 说 明 是 ："+ajaxReturn.statusText);
-    return ;
-}
+        layer.msg("请 求 处 理 出错 ！ 响 应 状 态 码 是 ： "+ajaxReturn.status+" 说 明 是 ："+ajaxReturn.statusText);
+        return ;
+    }
     // 2.从响应结果中获取 Auth 的 JSON 数据
     // 从服务器端查询到的 list 不需要组装成树形结构，这里我们交给 zTree 去组装
     var authList = ajaxReturn.responseJSON.data;
@@ -216,8 +216,7 @@ function fillAuthTree() {
         "async":false
     });
     if(ajaxReturn.status != 200) {
-        layer.msg("请 求 处 理 出错 ！ 响 应 状 态 码 是 ： "+ajaxReturn.status+" 说 明 是 ：
-        "+ajaxReturn.statusText);
+        layer.msg("请 求 处 理 出错 ！ 响 应 状 态 码 是 ： "+ajaxReturn.status+" 说 明 是 ："+ajaxReturn.statusText);
         return ;
     }
     // 从响应结果中获取 authIdArray

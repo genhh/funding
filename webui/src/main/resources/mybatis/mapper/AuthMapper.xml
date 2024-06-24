@@ -193,7 +193,7 @@
       category_id = #{categoryId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectAssignedAuthIdByRoleId" resultType="java.lang.Integer">
+  <select id="selectAssignedAuthIdByRoleId" resultType="int">
     select auth_id from inner_role_auth where role_id=#{roleId}
   </select>
   <delete id="deleteOldRelationship">
