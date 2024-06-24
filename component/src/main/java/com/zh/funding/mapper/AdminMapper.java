@@ -34,5 +34,5 @@ public interface AdminMapper {
 
     void deleteOLdRelationship(Integer adminId);
 
-    void insertNewRelationship(Integer adminId, List<Integer> roleIdList);
+    void insertNewRelationship(@Param("adminId")Integer adminId, @Param("roleIdList")List<Integer> roleIdList);
 }

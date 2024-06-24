@@ -51,5 +51,10 @@ mybatis error:xxx with invalid types () or values ().->(忘了写无参构造函
 完成功能:删除账户(无提示直接删除); 角色分页，更新ing，删除ing, 查询用js实现; 权限管理菜单展示
 
 ## 6th day
+Page指令：非法出现多次出现的'contentType'具有不同的值-> jsp头声明统一即可解决
+
+nested exception is org.apache.ibatis.binding.BindingException:“roleIdList” not found 
+
+解决方案-> AdminMapper对应接口加上@Param(多个参数时必须加上，单个参数不加也没事)
 
 完成功能：添加更新删除菜单节点，(但是侧边栏没有随之更新)
