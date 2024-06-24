@@ -44,3 +44,6 @@ values
 ('17','11',' 项 目 分 类 ','glyphicon glyphicon-list','projectType/index.htm'),
 ('18','11',' 项 目 标 签 ','glyphicon glyphicon-tags','tag/index.htm'),
 ('19','1',' 参 数 管 理 ','glyphicon glyphicon-list-alt','param/index.htm');
+DROP TABLE if EXISTS inner_admin_role;
+CREATE TABLE inner_admin_role ( `id` INT NOT NULL AUTO_INCREMENT,
+`admin_id` INT, `role_id` INT, PRIMARY KEY (`id`) );

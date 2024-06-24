@@ -52,4 +52,4 @@ mybatis error:xxx with invalid types () or values ().->(忘了写无参构造函
 
 ## 6th day
 
-完成功能：添加菜单节点，
+完成功能：添加更新删除菜单节点，(但是侧边栏没有随之更新)

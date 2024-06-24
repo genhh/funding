@@ -31,4 +31,8 @@ public interface AdminMapper {
     List<Admin> selectAdminByKeyword(String keyword);
 
     void selectAdminByPrimaryKey(String keyword);
+
+    void deleteOLdRelationship(Integer adminId);
+
+    void insertNewRelationship(Integer adminId, List<Integer> roleIdList);
 }
