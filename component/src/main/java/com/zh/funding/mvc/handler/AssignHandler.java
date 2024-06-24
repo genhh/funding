@@ -1,5 +1,6 @@
 package com.zh.funding.mvc.handler;
 
+import com.zh.funding.entity.Auth;
 import com.zh.funding.entity.Role;
 import com.zh.funding.service.api.AdminService;
 import com.zh.funding.service.api.AuthService;
@@ -57,7 +58,7 @@ public class AssignHandler {
     @ResponseBody
     @RequestMapping("/assign/get/assigned/auth/id/by/role/id.json")
     public ResultEntity<List<Integer>> getAssignedAuthIdByRoleId(
-            @RequestParam("roleId") Integer roleId) {
+            @RequestParam(value = "roleId") Integer roleId) {
         List<Integer> authIdList = authService.getAssignedAuthIdByRoleId(roleId);
         return ResultEntity.successWithData(authIdList);
     }
@@ -68,5 +69,11 @@ public class AssignHandler {
             @RequestBody Map<String, List<Integer>> map) {
         authService.saveRoleAuthRelathinship(map);
         return ResultEntity.successWithoutData();
+    }
+    @ResponseBody
+    @RequestMapping("assgin/get/all/auth.json")
+    public ResultEntity<List<Auth>> getAllAuth() {
+        List<Auth> auth = authService.getAllAuth();
+        return ResultEntity.successWithData(auth);
     }
 }

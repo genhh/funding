@@ -1,5 +1,7 @@
 package com.zh.funding.service.impl;
 
+import com.zh.funding.entity.Auth;
+import com.zh.funding.entity.AuthExample;
 import com.zh.funding.mapper.AuthMapper;
 import com.zh.funding.service.api.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +32,10 @@ public class AuthServiceImpl implements AuthService {
         if(authIdList != null && authIdList.size() > 0) {
             authMapper.insertNewRelationship(roleId, authIdList);
         }
+    }
+
+    @Override
+    public List<Auth> getAllAuth() {
+        return authMapper.selectByExample(new AuthExample());
     }
 }
