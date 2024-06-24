@@ -44,6 +44,27 @@ values
 ('17','11',' 项 目 分 类 ','glyphicon glyphicon-list','projectType/index.htm'),
 ('18','11',' 项 目 标 签 ','glyphicon glyphicon-tags','tag/index.htm'),
 ('19','1',' 参 数 管 理 ','glyphicon glyphicon-list-alt','param/index.htm');
+
 DROP TABLE if EXISTS inner_admin_role;
 CREATE TABLE inner_admin_role ( `id` INT NOT NULL AUTO_INCREMENT,
 `admin_id` INT, `role_id` INT, PRIMARY KEY (`id`) );
+
+DROP TABLE if EXISTS t_auth;
+CREATE TABLE `t_auth` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(200) DEFAULT NULL,
+`title` varchar(200) DEFAULT NULL,
+`category_id` int(11) DEFAULT NULL,
+PRIMARY KEY (`id`)
+);
+INSERT INTO t_auth(id,`name`,title,category_id) VALUES(1,'','用户模块',NULL);
+INSERT INTO t_auth(id,`name`,title,category_id) VALUES(2,'user:delete','删除',1);
+INSERT INTO t_auth(id,`name`,title,category_id) VALUES(3,'user:get','查询',1);
+INSERT INTO t_auth(id,`name`,title,category_id) VALUES(4,'','角色模块',NULL);
+INSERT INTO t_auth(id,`name`,title,category_id) VALUES(5,'role:delete','删除',4);
+INSERT INTO t_auth(id,`name`,title,category_id) VALUES(6,'role:get','查询',4);
+INSERT INTO t_auth(id,`name`,title,category_id) VALUES(7,'role:add','新增',4);
+
+DROP TABLE if EXISTS inner_role_auth;
+CREATE TABLE inner_role_auth ( `id` INT NOT NULL AUTO_INCREMENT,
+`role_id` INT, `auth_id` INT, PRIMARY KEY (`id`) );

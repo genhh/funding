@@ -2,14 +2,19 @@ package com.zh.funding.mvc.handler;
 
 import com.zh.funding.entity.Role;
 import com.zh.funding.service.api.AdminService;
+import com.zh.funding.service.api.AuthService;
 import com.zh.funding.service.api.RoleService;
+import com.zh.funding.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AssignHandler {
@@ -18,6 +23,8 @@ public class AssignHandler {
     RoleService roleService;
     @Autowired
     AdminService adminService;
+    @Autowired
+    AuthService authService;
     @RequestMapping("/assign/to/assign/role/page.html")
     public String toAssignRolePage(
             @RequestParam("adminId") Integer adminId,
@@ -45,5 +52,21 @@ public class AssignHandler {
 
         adminService.saveAdminRoleRelationship(adminId, roleIdList);
         return "redirect:/admin/get/page.html?pageNum="+pageNum+"&keyword="+keyword;
+    }
+
+    @ResponseBody
+    @RequestMapping("/assign/get/assigned/auth/id/by/role/id.json")
+    public ResultEntity<List<Integer>> getAssignedAuthIdByRoleId(
+            @RequestParam("roleId") Integer roleId) {
+        List<Integer> authIdList = authService.getAssignedAuthIdByRoleId(roleId);
+        return ResultEntity.successWithData(authIdList);
+    }
+
+    @ResponseBody
+    @RequestMapping("/assign/do/role/assign/auth.json")
+    public ResultEntity<String> saveRoleAuthRelathinship(
+            @RequestBody Map<String, List<Integer>> map) {
+        authService.saveRoleAuthRelathinship(map);
+        return ResultEntity.successWithoutData();
     }
 }
