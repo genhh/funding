@@ -68,3 +68,6 @@ INSERT INTO t_auth(id,`name`,title,category_id) VALUES(7,'role:add','新增',4);
 DROP TABLE if EXISTS inner_role_auth;
 CREATE TABLE inner_role_auth ( `id` INT NOT NULL AUTO_INCREMENT,
 `role_id` INT, `auth_id` INT, PRIMARY KEY (`id`) );
+
+ALTER TABLE `project_crowd`.`t_admin` CHANGE `user_pswd` `user_pswd` CHAR(100) CHARSET
+utf8 COLLATE utf8_general_ci NOT NULL;

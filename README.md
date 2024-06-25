@@ -65,3 +65,8 @@ roleId无法获取为null值，导致inner_role_auth表无法记录数据，把m
 ## 7th day
 引入 springSecurity.后所有网页都404,但是已经设置permitAll()了—>No-bean-named-springSecurityFilterChain-available->容器启动顺序问题
 ，->把所有配置放到springMVC ioc中
+
+SpringSecurity遇到Bad Credentials 
+
+org.springframework.beans.NotReadablePropertyException: Invalid property 'principal.originalAdmin'
+->显示出来才发现，principal原来是我们自己封装的SecurityAdmin对象（admin-main.jsp忘了修改）
