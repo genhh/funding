@@ -38,4 +38,9 @@ public class AuthServiceImpl implements AuthService {
     public List<Auth> getAllAuth() {
         return authMapper.selectByExample(new AuthExample());
     }
+
+    @Override
+    public List<String> getAssignedAuthNameByAdminId(Integer adminId) {
+        return authMapper.selectAssignedAuthNameByAdminId(adminId);
+    }
 }

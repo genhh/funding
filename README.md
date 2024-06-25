@@ -63,4 +63,5 @@ roleId无法获取为null值，导致inner_role_auth表无法记录数据，把m
 完成功能：添加更新删除菜单节点，(但是侧边栏没有随之更新)
 
 ## 7th day
-引入 springSecurity.
+引入 springSecurity.后所有网页都404,但是已经设置permitAll()了—>No-bean-named-springSecurityFilterChain-available->容器启动顺序问题
+，->把所有配置放到springMVC ioc中
