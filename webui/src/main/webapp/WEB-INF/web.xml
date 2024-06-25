@@ -10,16 +10,16 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">-->
 	
-	<!-- needed for ContextLoaderListener -->
+	<!-- needed for ContextLoaderListener
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring-persist-*.xml</param-value>
 	</context-param>
 	
-	<!-- Bootstraps the root web application context before servlet initialization -->
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	</listener>-->
 	
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
@@ -49,14 +49,23 @@
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- The front controller of this Spring Web application, responsible for handling all application requests -->
 	<servlet>
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring-web-mvc.xml</param-value>
+			<param-value>classpath:spring-*.xml</param-value>
 		</init-param>
 		<!-- Servlet默认生命周期中，创建对象是在第一次接收到请求时 -->
 		<!-- 而DispatcherServlet创建对象后有大量的“框架初始化”工作，不适合在第一次请求时来做 -->
@@ -84,12 +93,5 @@
 		<url-pattern>*.json</url-pattern>
 	</servlet-mapping>
 
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+
 </web-app>
