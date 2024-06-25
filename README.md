@@ -57,4 +57,10 @@ nested exception is org.apache.ibatis.binding.BindingException:“roleIdList” 
 
 解决方案-> AdminMapper对应接口加上@Param(多个参数时必须加上，单个参数不加也没事)
 
+roleId无法获取为null值，导致inner_role_auth表无法记录数据，把my-role.js文件中的window.roleId
+改为roleId即可。但每次重新分配时无法记住上次的选择，可能是逻辑设计问题。
+
 完成功能：添加更新删除菜单节点，(但是侧边栏没有随之更新)
+
+## 7th day
+引入 springSecurity

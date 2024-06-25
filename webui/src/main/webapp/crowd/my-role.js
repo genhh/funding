@@ -210,7 +210,7 @@ function fillAuthTree() {
         "url":"assign/get/assigned/auth/id/by/role/id.json",
         "type":"post",
         "data":{
-            "roleId":window.roleId
+            "roleId":roleId
         },
         "dataType":"json",
         "async":false

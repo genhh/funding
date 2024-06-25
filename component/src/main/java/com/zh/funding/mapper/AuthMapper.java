@@ -32,5 +32,5 @@ public interface AuthMapper {
 
     void deleteOldRelationship(Integer roleId);
 
-    void insertNewRelationship(Integer roleId, List<Integer> authIdList);
+    void insertNewRelationship(@Param("roleId")Integer roleId, @Param("authIdList")List<Integer> authIdList);
 }
