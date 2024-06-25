@@ -10,6 +10,8 @@ public interface AdminService {
 
     List<Admin> getAll();
 
+    Admin getAdminByLoginAcct(String username);
+
     Admin getAdminByLoginAcct(String loginAcct, String userPswd);
 
     PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize);
