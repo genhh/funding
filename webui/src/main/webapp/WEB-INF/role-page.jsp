@@ -271,12 +271,14 @@
 		// 13.给分配权限按钮绑定单击响应函数
         $("#rolePageBody").on("click",".checkBtn",function(){
             // 打开模态框
+            window.roleId = this.id;
             $("#assignModal").modal("show");
             // 在模态框中装载树 Auth 的形结构数据
             fillAuthTree();
         });
         // 14.给分配权限模态框中的“分配”按钮绑定单击响应函数
         $("#assignBtn").click(function(){
+
             // ①收集树形结构的各个节点中被勾选的节点
             // [1]声明一个专门的数组存放 id
             var authIdArray = [];
@@ -294,7 +296,7 @@
             var requestBody = {
                 "authIdArray":authIdArray,
                 // 为了服务器端 handler 方法能够统一使用 List<Integer>方式接收数据，roleId 也存入数组
-                "roleId":[window.roleId]
+                "roleId":[roleId]
             };
             requestBody = JSON.stringify(requestBody);
             $.ajax({
