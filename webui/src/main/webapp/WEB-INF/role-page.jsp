@@ -271,7 +271,7 @@
 		// 13.给分配权限按钮绑定单击响应函数
         $("#rolePageBody").on("click",".checkBtn",function(){
             // 打开模态框
-            window.roleId = this.id;
+            //window.roleId = this.id;
             $("#assignModal").modal("show");
             // 在模态框中装载树 Auth 的形结构数据
             fillAuthTree();

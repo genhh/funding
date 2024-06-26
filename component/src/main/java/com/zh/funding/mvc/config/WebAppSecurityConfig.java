@@ -87,7 +87,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
 			.permitAll()
 			.antMatchers("/admin/get/page.html")	// 针对分页显示Admin数据设定访问控制
 			// .hasRole("经理")					// 要求具备经理角色
-			.access("hasRole('经理') OR hasAuthority('user:get')")	// 要求具备“经理”角色和“user:get”权限二者之一
+			.access("hasRole('ropp2') OR hasAuthority('user:get')")	// 要求具备“经理”角色和“user:get”权限二者之一
 			.anyRequest()					// 其他任意请求
 			.authenticated()				// 认证后访问
 			.and()
