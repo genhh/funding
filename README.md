@@ -71,4 +71,10 @@ SpringSecurity遇到Bad Credentials
 org.springframework.beans.NotReadablePropertyException: Invalid property 'principal.originalAdmin'
 ->显示出来才发现，principal原来是我们自己封装的SecurityAdmin对象（admin-main.jsp忘了修改）
 ## 8th day
-SpringSecurity遇到Bad Credentials 且点击登录后302 not found
+SpringSecurity遇到Bad Credentials 且点击登录后302 not found ->换了密码编码方式为原先的md5+盐值处理即可成功登录
+
+但是菜单维护显示成了给用户分配角色的界面?-- new bug
+
+有时候点分配权限给角色会卡住?
+
+有权限但是无法访问用户维护?->得等下一次刷新缓存登录才行
