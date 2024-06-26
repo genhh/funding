@@ -40,6 +40,7 @@ public class AdminServiceImpl implements AdminService {
         String userPswd = admin.getUserPswd();
         //userPswd = CrowdUtil.md5(userPswd);
         userPswd =  passwordEncoder.encode(userPswd);
+
         admin.setUserPswd(userPswd);
 
         //create generate time
@@ -97,8 +98,9 @@ public class AdminServiceImpl implements AdminService {
         }
 
         String userPswdDB = admin.getUserPswd();
-        String userPswdForm = CrowdUtil.md5(userPswd);
-
+        //String userPswdForm = CrowdUtil.md5(userPswd);
+        String userPswdForm =  passwordEncoder.encode(userPswd);
+        System.out.println(userPswdForm);
         if(!Objects.equals(userPswdDB,userPswdForm)) {
             throw new LoginFailedException(CrowdConstant.MESSAGE_LOGIN_FAILED);
         }

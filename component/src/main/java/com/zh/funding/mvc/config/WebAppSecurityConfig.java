@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 import com.zh.funding.constant.CrowdConstant;
@@ -40,20 +42,21 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}*/
-	
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
-	
+	//@Autowired
+	//private BCryptPasswordEncoder passwordEncoder;
+	@Bean
+	public PasswordEncoder getPasswordEncoder(){
+		return new Md5Encoder();
+	}
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder builder) throws Exception {
 		
 		// 临时使用内存版登录的模式测试代码
-		builder.inMemoryAuthentication().withUser("tom").password("123").roles("ADMIN");
+		//builder.inMemoryAuthentication().withUser("admin").password("123456").roles("ppp");
 		
 		// 正式功能中使用基于数据库的认证
-		//builder
-		//	.userDetailsService(userDetailsService)
-		//	.passwordEncoder(passwordEncoder);
+		builder.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
 		
 	}
 	
@@ -103,7 +106,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
 			.disable()						// 禁用
 			.formLogin()					// 开启表单登录的功能
 			.loginPage("/admin/to/login/page.html")	// 指定登录页面
-			.loginProcessingUrl("/security/do/login.html")	// 指定处理登录请求的地址
+			.loginProcessingUrl("/security/do/login.html")	// 指定处理登录请求的地址//原有的就可以去掉了
 			.defaultSuccessUrl("/admin/to/main/page.html")	// 指定登录成功后前往的地址
 			.usernameParameter("loginAcct")	// 账号的请求参数名称
 			.passwordParameter("userPswd")	// 密码的请求参数名称

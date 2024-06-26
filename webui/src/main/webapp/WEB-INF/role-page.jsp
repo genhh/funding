@@ -125,7 +125,7 @@
 				"url":"role/update.json",
 				"type":"post",
 				"data":{
-					"id":window.roleId,
+					"id":roleId,
 					"name":roleName
 				},
 				"dataType":"json",
