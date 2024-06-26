@@ -70,3 +70,5 @@ SpringSecurity遇到Bad Credentials
 
 org.springframework.beans.NotReadablePropertyException: Invalid property 'principal.originalAdmin'
 ->显示出来才发现，principal原来是我们自己封装的SecurityAdmin对象（admin-main.jsp忘了修改）
+## 8th day
+SpringSecurity遇到Bad Credentials 且点击登录后302 not found
