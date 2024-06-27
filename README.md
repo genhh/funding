@@ -85,4 +85,7 @@ SpringSecurity遇到Bad Credentials 且点击登录后302 not found ->换了密�
 Unsupported class file major version 61 ->jdk版本过高或springBoot版本过低，->升级springCloud和springBoot版本，->
 测试时RunWith找不到->高版本springBoot不再用Runwith,junitTest也换成了.jupiter.api.Test;->测试运行时编译不通过"找不到符号"。->
 清除缓存，重新打包util模块->
-Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.maven打包错误
+Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.maven打包错误->看日志java.
+lang.TypeNotPresentException: Type org.springframework.test.context.junit.jupiter.SpringExtension not present->
+[重新选择test依赖](https://blog.csdn.net/W521125W/article/details/134919138)->jvm崩溃->把mvn的test关掉,然后重新install观察具体错误->
+TestEngine with ID 'junit-jupiter' failed to discover tests
