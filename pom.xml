@@ -181,6 +181,7 @@
         <module>util</module>
         <module>reverse</module>
         <module>component</module>
+        <module>front-member</module>
     </modules>
 
 
