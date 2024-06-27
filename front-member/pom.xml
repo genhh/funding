@@ -36,7 +36,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.SR2</version>
+                <version>2023.0.2</version>
                 <type>pom</type>
                 <!-- import依赖范围表示将spring-cloud-dependencies包中的依赖信息导入 -->
                 <scope>import</scope>
@@ -45,7 +45,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.1.6.RELEASE</version>
+                <version>3.2.6</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -59,6 +59,13 @@
                 <artifactId>druid</artifactId>
                 <version>1.0.5</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>3.3.1</version>
+                <scope>test</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>
