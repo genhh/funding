@@ -1,5 +1,5 @@
 # CrowdFunding
-a web for Crowdfunding 
+a web for Crowdfunding , Java17
 ## 1st day
 create project and install dependencies
 - springMVC+mybatis+jsp+jQuery+SmartTomcat+zTree+layer弹层+pageHelper
@@ -78,3 +78,11 @@ SpringSecurity遇到Bad Credentials 且点击登录后302 not found ->换了密�
 有时候点分配权限给角色会卡住?
 
 有权限但是无法访问用户维护?->得等下一次刷新缓存登录才行
+
+## 9th day
+开始搭建前台用户系统,技术栈:springBoot+springCloud
+
+Unsupported class file major version 61 ->jdk版本过高或springBoot版本过低，->升级springCloud和springBoot版本，->
+测试时RunWith找不到->高版本springBoot不再用Runwith,junitTest也换成了.jupiter.api.Test;->测试运行时编译不通过"找不到符号"。->
+清除缓存，重新打包util模块->
+Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.maven打包错误
