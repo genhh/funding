@@ -1,7 +1,7 @@
 package com.zh.funding.mapper;
 
-import com.zh.funding.entity.po.MemberPO;
-import com.zh.funding.entity.po.MemberPOExample;
+import com.zh.funding.frontentity.po.MemberPO;
+import com.zh.funding.frontentity.po.MemberPOExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
