@@ -1,5 +1,5 @@
 # CrowdFunding
-a web for Crowdfunding , Java17
+a web for Crowdfunding , Java8
 ## 1st day
 create project and install dependencies
 - springMVC+mybatis+jsp+jQuery+SmartTomcat+zTree+layer弹层+pageHelper
@@ -93,4 +93,12 @@ TestEngine with ID 'junit-jupiter' failed to discover tests
 ->换成junit-engine
 ->java.lang.AbstractMethodError: Receiver class org.springframework.boot.logging.logback.RootLogLevelConfigurator does 
 not define or inherit an implementation of the resolved method 'abstract void configure(ch.qos.logback.classic.LoggerContext)' 
-of interface ch.qos.logback.classic.spi.Configurator->lomback的问题 ->只有slf4j，这个只是接口，具体还需要log4j、logback或log4j2
+of interface ch.qos.logback.classic.spi.Configurator->lomback的问题 ->只有slf4j，这个只是接口，具体还需要log4j、logback或log4j2->
+org.springframework.test.context不存在->删了maven本地库重新下载，配置mavenHelper插件解决依赖冲突->还是不行
+
+
+记错了，之前后台的Java sdk应该是8的，后面可能是清除idea缓存，在项目结构中显示的都是sdk17,然后就没看父pom文件。后面全换成sdk8的试试.
+idea一刷新maven之前配置就都变回17去了，后面按照网上教程在父Pom里面加了个插件->清缓存->编译失败无法访问com.zh.funding.entity.po.MemberPO。
+但是按住ctrl可以跳转过去
+
+idea是真麻烦，每次install不了几次就得重启，吃内存吃的有点离谱
