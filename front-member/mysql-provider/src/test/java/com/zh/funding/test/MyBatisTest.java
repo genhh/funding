@@ -1,6 +1,6 @@
 package com.zh.funding.test;
 
-import com.zh.funding.entity.po.MemberPO;
+import com.zh.funding.frontentity.po.MemberPO;
 import com.zh.funding.mapper.MemberPOMapper;
 import com.zh.funding.util.CrowdUtil;
 import org.junit.Test;

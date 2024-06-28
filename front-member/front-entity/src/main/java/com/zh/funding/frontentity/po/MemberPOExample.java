@@ -1,4 +1,4 @@
-package com.zh.funding.entity.po;
+package com.zh.funding.frontentity.po;
 
 import java.util.ArrayList;
 import java.util.List;
