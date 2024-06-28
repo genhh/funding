@@ -89,3 +89,8 @@ Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and
 lang.TypeNotPresentException: Type org.springframework.test.context.junit.jupiter.SpringExtension not present->
 [重新选择test依赖](https://blog.csdn.net/W521125W/article/details/134919138)->jvm崩溃->把mvn的test关掉,然后重新install观察具体错误->
 TestEngine with ID 'junit-jupiter' failed to discover tests
+## 10th day
+->换成junit-engine
+->java.lang.AbstractMethodError: Receiver class org.springframework.boot.logging.logback.RootLogLevelConfigurator does 
+not define or inherit an implementation of the resolved method 'abstract void configure(ch.qos.logback.classic.LoggerContext)' 
+of interface ch.qos.logback.classic.spi.Configurator->lomback的问题 ->只有slf4j，这个只是接口，具体还需要log4j、logback或log4j2
