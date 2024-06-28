@@ -43,6 +43,11 @@ public class MyBatisTest {
 
         Connection connection = dataSource.getConnection();
 
-        //logger.debug(connection.toString());
+        logger.debug(connection.toString());
+    }
+
+    @Test
+    public void testPrint() {
+        System.out.println("this is a test");
     }
 }

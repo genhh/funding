@@ -100,6 +100,8 @@ org.springframework.test.context不存在->删了maven本地库重新下载，�
 记错了，之前后台的Java sdk应该是8的，后面可能是清除idea缓存，在项目结构中显示的都是sdk17,然后就没看父pom文件。后面全换成sdk8的试试.
 idea一刷新maven之前配置就都变回17去了，后面按照网上教程在父Pom里面加了个插件->清缓存->编译失败无法访问com.zh.funding.entity.po.MemberPO。
 但是按住ctrl可以跳转过去->清除idea缓存还是不行->rebuild-> Cannot load driver class: com.mysql.cj.jdbc.Driver->following method did not exist:
-org.mybatis.spring.SqlSessionFactoryBean.setVfs(Ljava/lang/Class;)V->统一一下mybatis依赖版本->jvm老是崩崩崩
+org.mybatis.spring.SqlSessionFactoryBean.setVfs(Ljava/lang/Class;)V->统一一下mybatis依赖版本->jvm老是崩崩崩->突然发现子模块的maven.compiler.source都是17，改为8->
+mybatis版本和springBoot不兼容，套了两个父pom搞的现在很不好搞，maven helper也没显示依赖冲突->The following method did not exist:
+org.springframework.web.servlet.DispatcherServlet.setEnableLoggingRequestDetails(Z)V springWebMVC依赖有问题->spring-core版本不统一->修改后终于成功
 
 idea是真麻烦，每次install不了几次就得重启，吃内存吃的有点离谱
