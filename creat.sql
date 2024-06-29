@@ -68,3 +68,19 @@ INSERT INTO t_auth(id,`name`,title,category_id) VALUES(7,'role:add','新增',4);
 DROP TABLE if EXISTS inner_role_auth;
 CREATE TABLE inner_role_auth ( `id` INT NOT NULL AUTO_INCREMENT,
 `role_id` INT, `auth_id` INT, PRIMARY KEY (`id`) );
+
+ALTER TABLE `project_crowd`.`t_admin` CHANGE `user_pswd` `user_pswd` CHAR(100) CHARSET
+utf8 COLLATE utf8_general_ci NOT NULL;
+
+CREATE TABLE t_member
+(id INT(11) NOT NULL auto_increment,
+loginacct VARCHAR(255) NOT NULL,
+userpswd CHAR(200) NOT NULL,
+username VARCHAR(255),
+email VARCHAR(255),
+authstatus INT(4) comment '实名认证状态 0 - 未实名认证， 1 - 实名认证申请中， 2 - 已实名认证',
+usertype INT(4) comment ' 0 - 个人， 1 - 企业',
+realname VARCHAR(255),
+cardnum VARCHAR(255),
+accttype INT(4) comment '0 - 企业， 1 - 个体， 2 - 个人， 3 - 政府',
+PRIMARY KEY (id));
