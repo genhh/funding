@@ -105,3 +105,7 @@ mybatis版本和springBoot不兼容，套了两个父pom搞的现在很不好搞
 org.springframework.web.servlet.DispatcherServlet.setEnableLoggingRequestDetails(Z)V springWebMVC依赖有问题->spring-core版本不统一->修改后终于成功
 
 idea是真麻烦，每次install不了几次就得重启，吃内存吃的有点离谱
+
+## 11th day
+
+搭建远程调用接口模块，授权登录模块，Mysql处理数据模块，redis共享缓存模块。。。
