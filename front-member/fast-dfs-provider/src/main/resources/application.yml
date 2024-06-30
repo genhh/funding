@@ -1,0 +1,27 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: crowd-fdfs
+fdfs:
+  so-timeout: 15001 # 超时时间
+  connect-timeout: 6001 # 连接超时时间
+  pool:
+    max-total: 200   # 连接池最大数量
+    max-total-per-key: 50  # 单个tracker最大连接数
+    max-wait-millis: 5000 # 连接耗尽最大等待时间 毫秒
+  thumb-image: # 缩略图
+    width: 60
+    height: 60
+  tracker-list: xxx.xx.xx.xx:2007
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+zuul:
+  ignored-services: "*"
+  sensitive-headers: "*"  # 在Zuul向其他微服务重定向时保持原本头信息（请求头、响应头）
+  routes:
+    crowd-portal:
+      service-id: crowd-auth
+      path: /** # 这里一定要使用两个“*”号，不然“/”路径后面的多层路径将无法访问
