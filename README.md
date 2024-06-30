@@ -109,3 +109,7 @@ idea是真麻烦，每次install不了几次就得重启，吃内存吃的有点
 ## 11th day
 
 搭建远程调用接口模块，授权登录模块，Mysql处理数据模块，redis共享缓存模块。。。
+
+## 12th day
+
+用docker 创建redis镜像容器进行redis可行性测试，网关模块搭建
