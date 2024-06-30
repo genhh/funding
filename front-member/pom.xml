@@ -22,6 +22,7 @@
         <module>project-consumer</module>
         <module>order-consumer</module>
         <module>pay-consumer</module>
+        <module>fast-dfs-provider</module>
     </modules>
 
     <properties>
