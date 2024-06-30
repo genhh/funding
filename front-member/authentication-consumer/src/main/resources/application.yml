@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: crowd-auth
+    redis: 127.0.0.1
+    session:
+      store-type: redis
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
