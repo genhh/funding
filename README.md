@@ -1,5 +1,14 @@
 # CrowdFunding
 a web for Crowdfunding , Java8
+## 技术总结
+| 注册中心   | 消息队列  | 分布式文件系统 |
+|--------|-------|------|
+| Eureka | Kafka | HDFS |
+| Nacos  | RabbitMQ  |      |
+| Consul | ActiveMQ |      |
+
+![img](https://ucc.alicdn.com/pic/developer-ecology/8f2f08de0b4442f1b93a8c169deb7c04.png)
+
 ## 1st day
 create project and install dependencies
 - springMVC+mybatis+jsp+jQuery+SmartTomcat+zTree+layer弹层+pageHelper
@@ -117,3 +126,5 @@ idea是真麻烦，每次install不了几次就得重启，吃内存吃的有点
 报错找不到测试类，，，刷新idea缓存，maven clean包，然后reimport,然后重启解决，通过RSEP查看redis成功存储相关测试用例
 
 要跑主程序就要把测试类ban掉否则运行主程序也会运行测试类，然后导致错误，入口是http://127.0.0.1:4000/，但是很奇怪，关了相关主程序，该网址依然能访问
+
+springSession主要是基于Redis来实现分布式会话管理。接管TomCat
