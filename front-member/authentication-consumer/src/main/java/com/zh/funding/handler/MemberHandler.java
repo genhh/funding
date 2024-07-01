@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zh.funding.frontapi.MySQLRemoteService;
 import com.zh.funding.frontapi.RedisRemoteService;
-import com.zh.funding.config.ShortMessageProperties;
 import com.zh.funding.constant.CrowdConstant;
 import com.zh.funding.frontentity.po.MemberPO;
 import com.zh.funding.frontentity.vo.MemberLoginVO;
@@ -27,8 +25,7 @@ import com.zh.funding.util.ResultEntity;
 @Controller
 public class MemberHandler {
 	
-	@Autowired
-	private ShortMessageProperties shortMessageProperties;
+
 	
 	@Autowired
 	private RedisRemoteService redisRemoteService;
@@ -73,12 +70,10 @@ public class MemberHandler {
 		
 		// 2.比较密码
 		String userpswdDataBase = memberPO.getUserpswd();
+
+		userpswd = CrowdUtil.md5(userpswd);
 		
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
-		boolean matcheResult = passwordEncoder.matches(userpswd, userpswdDataBase);
-		
-		if(!matcheResult) {
+		if(!Objects.equals(userpswd, userpswdDataBase)) {
 			modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, CrowdConstant.MESSAGE_LOGIN_FAILED);
 			
 			return "member-login";
@@ -135,10 +130,9 @@ public class MemberHandler {
 		redisRemoteService.removeRedisKeyRemote(key);
 		
 		// 7.执行密码加密
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String userpswdBeforeEncode = memberVO.getUserpswd();
 		
-		String userpswdAfterEncode = passwordEncoder.encode(userpswdBeforeEncode);
+		String userpswdAfterEncode = CrowdUtil.md5(userpswdBeforeEncode);
 		
 		memberVO.setUserpswd(userpswdAfterEncode);
 		
@@ -150,12 +144,11 @@ public class MemberHandler {
 		BeanUtils.copyProperties(memberVO, memberPO);
 		
 		// ③调用远程方法
-		ResultEntity<String> saveMemberResultEntity = mySQLRemoteService.saveMember(memberPO);
-		
-		if(ResultEntity.FAILED.equals(saveMemberResultEntity.getResult())) {
-			
-			modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, saveMemberResultEntity.getMessage());
-			
+		try {
+			mySQLRemoteService.saveMember(memberPO);
+		} catch (Exception e) {
+			modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, "保存用户注册信息失败");
+
 			return "member-reg";
 		}
 		
