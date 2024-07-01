@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.atguigu.crowd.api.MySQLRemoteService;
-import com.atguigu.crowd.api.RedisRemoteService;
-import com.atguigu.crowd.config.ShortMessageProperties;
-import com.atguigu.crowd.constant.CrowdConstant;
-import com.atguigu.crowd.entity.po.MemberPO;
-import com.atguigu.crowd.entity.vo.MemberLoginVO;
-import com.atguigu.crowd.entity.vo.MemberVO;
-import com.atguigu.crowd.util.CrowdUtil;
-import com.atguigu.crowd.util.ResultEntity;
+import com.zh.funding.frontapi.MySQLRemoteService;
+import com.zh.funding.frontapi.RedisRemoteService;
+import com.zh.funding.config.ShortMessageProperties;
+import com.zh.funding.constant.CrowdConstant;
+import com.zh.funding.frontentity.po.MemberPO;
+import com.zh.funding.frontentity.vo.MemberLoginVO;
+import com.zh.funding.frontentity.vo.MemberVO;
+import com.zh.funding.util.CrowdUtil;
+import com.zh.funding.util.ResultEntity;
 
 @Controller
 public class MemberHandler {
@@ -168,13 +168,7 @@ public class MemberHandler {
 	public ResultEntity<String> sendMessage(@RequestParam("phoneNum") String phoneNum) {
 		
 		// 1.发送验证码到phoneNum手机
-		ResultEntity<String> sendMessageResultEntity = CrowdUtil.sendCodeByShortMessage(
-				shortMessageProperties.getHost(), 
-				shortMessageProperties.getPath(), 
-				shortMessageProperties.getMethod(), phoneNum, 
-				shortMessageProperties.getAppCode(), 
-				shortMessageProperties.getSign(), 
-				shortMessageProperties.getSkin());
+		ResultEntity<String> sendMessageResultEntity = CrowdUtil.sendCodeByShortMessage(phoneNum);
 		
 		// 2.判断短信发送结果
 		if(ResultEntity.SUCCESS.equals(sendMessageResultEntity.getResult())) {

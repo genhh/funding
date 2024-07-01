@@ -5,6 +5,7 @@ import com.zh.funding.frontentity.po.MemberPOExample;
 import com.zh.funding.frontentity.po.MemberPOExample.Criteria;
 import com.zh.funding.mapper.MemberPOMapper;
 import com.zh.funding.service.api.MemberService;
+import com.zh.funding.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -29,5 +30,10 @@ public class MemberServiceImpl implements MemberService {
 
         // 5.获取结果
         return list.get(0);
+    }
+
+    @Override
+    public ResultEntity<String> saveMember(MemberPO memberPO) {
+        return null;
     }
 }
