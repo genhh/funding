@@ -13,7 +13,7 @@ fdfs:
   thumb-image: # 缩略图
     width: 60
     height: 60
-  tracker-list: xxx.xx.xx.xx:2007
+  tracker-list: 127.0.0.1:2007
 eureka:
   client:
     service-url:

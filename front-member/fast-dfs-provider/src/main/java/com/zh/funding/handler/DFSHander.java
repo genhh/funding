@@ -1,17 +1,27 @@
 package com.zh.funding.handler;
 
+import com.github.tobato.fastdfs.domain.fdfs.*;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.zh.funding.util.ResultEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
+
+import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
+
 @RestController
 public class DFSHander {
+
+    @Autowired
+    protected FastFileStorageClient storageClient;
     /**
-     * 专门负责上传文件到FastDFS服务器的工具方法
+     * 专门负责上传文件到FastDFS服务器的客户端类(待测试)
      * @param inputStream		要上传的文件的输入流
      * @param originalName		要上传的文件的原始文件名
      * @return	包含上传结果以及上传的文件在OSS上的访问路径
@@ -37,44 +47,33 @@ public class DFSHander {
         // 使用目录、文件主体名称、文件扩展名称拼接得到对象名称
         String objectName = folderName + "/" + fileMainName + extensionName;
 
-        try {
-            // 调用OSS客户端对象的方法上传文件并获取响应结果数据
-            PutObjectResult putObjectResult = ossClient.putObject(bucketName, objectName, inputStream);
+        // Metadata
 
-            // 从响应结果中获取具体响应消息
-            ResponseMessage responseMessage = putObjectResult.getResponse();
+
+
+        try {
+            // 上传文件和Metadata
+            StorePath path = storageClient.uploadFile(inputStream, 10, objectName, null);
+            assertNotNull(path);
+
+
+            // 验证获取MetaData
+
+            Set<MetaData> fetchMetaData = storageClient.getMetadata(path.getGroup(), path.getPath());
 
             // 根据响应状态码判断请求是否成功
-            if(responseMessage == null) {
-
-                // 拼接访问刚刚上传的文件的路径
-                String ossFileAccessPath = bucketDomain + "/" + objectName;
-
+            if(path.getPath() != null) {
                 // 当前方法返回成功
-                return ResultEntity.successWithData(ossFileAccessPath);
+                return ResultEntity.successWithData(path.getPath());
             } else {
-                // 获取响应状态码
-                int statusCode = responseMessage.getStatusCode();
-
-                // 如果请求没有成功，获取错误消息
-                String errorMessage = responseMessage.getErrorResponseAsString();
-
                 // 当前方法返回失败
-                return ResultEntity.failed("当前响应状态码="+statusCode+" 错误消息="+errorMessage);
+                return ResultEntity.failed("失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
 
             // 当前方法返回失败
             return ResultEntity.failed(e.getMessage());
-        } finally {
-
-            if(ossClient != null) {
-
-                // 关闭OSSClient。
-                ossClient.shutdown();
-            }
         }
-
     }
 }
