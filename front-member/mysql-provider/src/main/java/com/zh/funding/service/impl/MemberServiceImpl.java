@@ -7,9 +7,15 @@ import com.zh.funding.mapper.MemberPOMapper;
 import com.zh.funding.service.api.MemberService;
 import com.zh.funding.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+// 在类上使用@Transactional(readOnly = true)针对查询操作设置事务属性
+@Transactional(readOnly = true)
+@Service
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
@@ -32,8 +38,12 @@ public class MemberServiceImpl implements MemberService {
         return list.get(0);
     }
 
+    @Transactional(
+            propagation = Propagation.REQUIRES_NEW,
+            rollbackFor = Exception.class,
+            readOnly = false)
     @Override
-    public ResultEntity<String> saveMember(MemberPO memberPO) {
-        return null;
+    public void saveMember(MemberPO memberPO) {
+        memberPOMapper.insertSelective(memberPO);
     }
 }
