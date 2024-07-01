@@ -139,3 +139,5 @@ springSession主要是基于Redis来实现分布式会话管理。接管TomCat
 ## 13th day
 [FastDFSClient github](https://github.com/tobato/FastDFS_Client)
 
+报错 util-1.0-SNAPSHOT.jar.396611389894939640.tmp:是对应java程序一直在运行无法关闭，最后通过任务管理器强制关闭然后清空对应本地maven
+
