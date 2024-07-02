@@ -13,5 +13,5 @@ public interface MySQLRemoteService {
     ResultEntity<MemberPO> getMemberPOByLoginAcctRemote(@RequestParam("loginacct") String loginacct);
 
     @RequestMapping("/save/member/remote")
-    public void saveMember(@RequestBody MemberPO memberPO);
+    public ResultEntity<String> saveMember(@RequestBody MemberPO memberPO);
 }
