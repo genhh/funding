@@ -1,6 +1,7 @@
 package com.zh.funding.frontapi;
 
 import com.zh.funding.frontentity.po.MemberPO;
+import com.zh.funding.frontentity.vo.ProjectVO;
 import com.zh.funding.util.ResultEntity;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,4 +15,6 @@ public interface MySQLRemoteService {
 
     @RequestMapping("/save/member/remote")
     public ResultEntity<String> saveMember(@RequestBody MemberPO memberPO);
+
+    ResultEntity<String> saveProjectVORemote(ProjectVO projectVO, Integer memberId);
 }

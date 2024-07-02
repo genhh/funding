@@ -20,4 +20,9 @@ public class CrowdConstant {
 
     public static final String PHONE_REGEX = "^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\\d{8}$";
 
+    public static final String ATTR_NAME_TEMPLE_PROJECT = ;
+    public static final String MESSAGE_TEMPLE_PROJECT_MISSING = ;
+    public static final Object MESSAGE_HEADER_PIC_UPLOAD_FAILED = ;
+    public static final Object MESSAGE_DETAIL_PIC_EMPTY = ;
+    public static final Object MESSAGE_DETAIL_PIC_UPLOAD_FAILED = ;
 }
