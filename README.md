@@ -154,5 +154,7 @@ is normally permitted.
 
 DefaultSerializer requires a Serializable payload but received an object of type ->存入redis的对象需要实现序列化
 
+Load balancer does not have available server for client: crowd-redis
+
 
 

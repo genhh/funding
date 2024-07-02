@@ -144,10 +144,10 @@ public class MemberHandler {
 		BeanUtils.copyProperties(memberVO, memberPO);
 		
 		// ③调用远程方法
-		try {
-			mySQLRemoteService.saveMember(memberPO);
-		} catch (Exception e) {
-			modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, "保存用户注册信息失败");
+		ResultEntity<String> message = mySQLRemoteService.saveMember(memberPO);
+
+		if (message.getResult().equals(ResultEntity.FAILED)){
+			modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, message.getMessage());
 
 			return "member-reg";
 		}
@@ -178,7 +178,7 @@ public class MemberHandler {
 			// ④判断结果
 			if(ResultEntity.SUCCESS.equals(saveCodeResultEntity.getResult())) {
 				
-				return ResultEntity.successWithoutData();
+				return ResultEntity.successWithData(code);//把验证码写到请求中，方便调试
 			}else {
 				return saveCodeResultEntity;
 			}
