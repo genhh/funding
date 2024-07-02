@@ -141,3 +141,18 @@ springSession主要是基于Redis来实现分布式会话管理。接管TomCat
 
 报错 util-1.0-SNAPSHOT.jar.396611389894939640.tmp:是对应java程序一直在运行无法关闭，最后通过任务管理器强制关闭然后清空对应本地maven
 
+完成登录，注册，发送验证码功能
+
+## 14th day
+
+Error invoking remote method 'docker-start-container': Error: (HTTP code 500) server error - Ports are not available: 
+exposing port TCP 0.0.0.0:6379 -> 0.0.0.0:0: listen tcp 0.0.0.0:6379: bind: Only one usage of each socket address (protocol/network address/port) 
+is normally permitted.
+
+端口被java程序莫名其妙的占用了，为什么每次都是正常关闭程序还会有java程序残留运行，可能是我先关的redis容器，然后再关java程序导致->是之前idea设置的问题，
+把设置中的maven build run中的“将IDEA构建/运行操作委托给maven”选项去勾->还是不行
+
+DefaultSerializer requires a Serializable payload but received an object of type ->存入redis的对象需要实现序列化
+
+
+
