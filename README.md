@@ -6,6 +6,20 @@ a web for Crowdfunding , Java8
 | Eureka | Kafka | HDFS |
 | Nacos  | RabbitMQ  |      |
 | Consul | ActiveMQ |      |
+前台分布式端口设置
+
+| 服务                      | 端口   |
+|-------------------------|------|
+| eureka                  | 1000 |
+| mysql-provider          | 2000 |
+| redis-provider          | 3000 |
+| authentication-consumer | 4000 |
+| project-consumer        | 5000 |
+| fdfs-provider           | 6000 |
+| order-consumer          | 7000 |
+| pay-consumer            | 8000 |
+| Nginx                   | 80   |
+| zuul                    | 9000 |
 
 ![img](https://ucc.alicdn.com/pic/developer-ecology/8f2f08de0b4442f1b93a8c169deb7c04.png)
 
@@ -158,6 +172,14 @@ Load balancer does not have available server for client: crowd-redis
 
 前一周上午都有其他事没有时间
 
+## 15th day
+[MultipartFile类讲解](https://blog.csdn.net/weixin_45393094/article/details/112056436)
+
+要用fastFDS存储数据，就要引入Ngnix和网关配合，有点复杂
+
+配置127映射域名为www.zh.test.com
+
+调整了upload函数
 
 
 

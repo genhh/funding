@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.zh.funding.frontapi.MySQLRemoteService;
+import com.zh.funding.frontapi.FdfsRemoteService;
 import com.zh.funding.constant.CrowdConstant;
 import com.zh.funding.frontentity.vo.MemberConfirmInfoVO;
 import com.zh.funding.frontentity.vo.MemberLoginVO;
@@ -27,7 +28,7 @@ import com.zh.funding.util.ResultEntity;
 public class ProjectConsumerHandler {
 	
 	@Autowired
-	private OSSProperties ossProperties;
+	private FdfsRemoteService fdfsRemoteService;
 	
 	@Autowired
 	private MySQLRemoteService mySQLRemoteService;
@@ -122,14 +123,8 @@ public class ProjectConsumerHandler {
 			@RequestParam("returnPicture") MultipartFile returnPicture) throws IOException {
 		
 		// 1.执行文件上传
-		ResultEntity<String> uploadReturnPicResultEntity = CrowdUtil.uploadFileToOss(
-				ossProperties.getEndPoint(), 
-				ossProperties.getAccessKeyId(), 
-				ossProperties.getAccessKeySecret(), 
-				returnPicture.getInputStream(), 
-				ossProperties.getBucketName(), 
-				ossProperties.getBucketDomain(), 
-				returnPicture.getOriginalFilename());
+		ResultEntity<String> uploadReturnPicResultEntity = fdfsRemoteService.uploadFileToDFS(
+				returnPicture);
 		
 		// 2.返回上传的结果
 		return uploadReturnPicResultEntity;
@@ -167,14 +162,8 @@ public class ProjectConsumerHandler {
 			
 		}
 		// 3.如果用户确实上传了有内容的文件，则执行上传
-		ResultEntity<String> uploadHeaderPicResultEntity = CrowdUtil.uploadFileToOss(
-				ossProperties.getEndPoint(), 
-				ossProperties.getAccessKeyId(), 
-				ossProperties.getAccessKeySecret(), 
-				headerPicture.getInputStream(), 
-				ossProperties.getBucketName(), 
-				ossProperties.getBucketDomain(), 
-				headerPicture.getOriginalFilename());
+		ResultEntity<String> uploadHeaderPicResultEntity = fdfsRemoteService.uploadFileToDFS(
+				headerPicture);
 		
 		String result = uploadHeaderPicResultEntity.getResult();
 		
@@ -219,14 +208,8 @@ public class ProjectConsumerHandler {
 			}
 			
 			// 6.执行上传
-			ResultEntity<String> detailUploadResultEntity = CrowdUtil.uploadFileToOss(
-					ossProperties.getEndPoint(), 
-					ossProperties.getAccessKeyId(), 
-					ossProperties.getAccessKeySecret(), 
-					detailPicture.getInputStream(), 
-					ossProperties.getBucketName(), 
-					ossProperties.getBucketDomain(), 
-					detailPicture.getOriginalFilename());
+			ResultEntity<String> detailUploadResultEntity = fdfsRemoteService.uploadFileToDFS(
+					detailPicture);
 			
 			// 7.检查上传结果
 			String detailUploadResult = detailUploadResultEntity.getResult();
@@ -255,7 +238,7 @@ public class ProjectConsumerHandler {
 		session.setAttribute(CrowdConstant.ATTR_NAME_TEMPLE_PROJECT, projectVO);
 		
 		// 2.以完整的访问路径前往下一个收集回报信息的页面
-		return "redirect:http://127.0.0.1/project/return/info/page";
+		return "redirect:http://www.zh.test.com/project/return/info/page";
 	}
 
 }
