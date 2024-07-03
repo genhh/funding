@@ -175,11 +175,21 @@ Load balancer does not have available server for client: crowd-redis
 ## 15th day
 [MultipartFile类讲解](https://blog.csdn.net/weixin_45393094/article/details/112056436)
 
-要用fastFDS存储数据，就要引入Ngnix和网关配合，有点复杂
+要用fastFDS存储数据，就要引入Nginx和网关配合，有点复杂 [Nginx+springCloud](https://cloud.tencent.com/developer/article/1931848)
 
 配置127映射域名为www.zh.test.com
 
-调整了upload函数
+调整了upload函数， 先测试引入Nginx，待正常工作后引入fastDFS
+```
+#在有nginx配置文件对应目录下运行该命令生成nginx docker容器
+# windows续行符^, linux续行符\
+# 要挂载宿主机上的目录作为数据卷，需要用绝对路径，
+docker run -p 80:80 --name nginx-test ^
+-v E:/JavaProject/funding/nginx/html:/usr/share/nginx/html ^
+-v E:/JavaProject/funding/nginx/logs:/var/log/nginx ^
+-v E:/JavaProject/funding/nginx/conf:/etc/nginx ^
+-d nginx:latest
+```
 
 
 
