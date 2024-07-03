@@ -194,6 +194,38 @@ docker run -p 80:80 --name nginx-test ^
 nginx容器报错：connect() failed (111: Connection refused) while connecting to upstream, client: 172.17.0.1, server: xxx.com
 ->因为是在docker容器中，所以127是指向容器本身而非宿主机，把127改成宿主机192开头的ip即可
 
+fastDFS容器自带nginx,路径:/usr/local/src/fastdfs/nginx-1.7.8/conf
+
+配置 /etc/nginx/nginx.conf
+```
+server {
+        listen       80;
+        server_name  www.zh.test.com;;
+
+        location / {
+
+            proxy_pass http://192.168.1.103:9000/;#zuul
+        } 
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }      
+}
+```
+配置/etc/fdfs/mod_fastdfs.conf，
+
+
+配置/etc/fdfs/tracker.conf，
+配置/etc/fdfs/storage.conf，
+配置/etc/fdfs/client.conf
+tracker_server 和bind_addr都写容器自己内部eth0对应ip
+
+fastdfs errno: 111, error info: Connection refused
+storge 23000口一直启动不起来
+tracker_server 和bind_addr都写容器自己内部eth0对应ip
+
+docker容器本地可以上传了，但是外部好像还访问不了,503error
+
 后续计划：完成文件上传，生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
 
 
