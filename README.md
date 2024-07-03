@@ -191,5 +191,10 @@ docker run -p 80:80 --name nginx-test ^
 -d nginx:latest
 ```
 
+nginx容器报错：connect() failed (111: Connection refused) while connecting to upstream, client: 172.17.0.1, server: xxx.com
+->因为是在docker容器中，所以127是指向容器本身而非宿主机，把127改成宿主机192开头的ip即可
+
+后续计划：完成文件上传，生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
+
 
 
