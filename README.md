@@ -225,14 +225,21 @@ storge 23000口一直启动不起来
 tracker_server 和bind_addr都写容器自己内部eth0对应ip
 
 docker容器本地可以上传了，但是外部好像还访问不了,503error
-
+## 16th day
 dockerV4.29之后才在windows下支持host模式
 
 [docker官网教程](https://docs.docker.com/network/network-tutorial-host/#goal)
 
 c盘满了没法安装，清理下c盘,安装完毕，docker引擎启动不起来
 
-后续计划：完成文件上传，生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
+那个windows启用host模式在设置里面develop那里设置重启才有效
+
+tobato/centos7_fdfs镜像有问题，nginx启动失败,**先跳过**
+
+后续计划：~~完成文件上传~~，
+
+
+生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
 
 
 
