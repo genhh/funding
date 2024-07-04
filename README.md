@@ -226,6 +226,12 @@ tracker_server 和bind_addr都写容器自己内部eth0对应ip
 
 docker容器本地可以上传了，但是外部好像还访问不了,503error
 
+dockerV4.29之后才在windows下支持host模式
+
+[docker官网教程](https://docs.docker.com/network/network-tutorial-host/#goal)
+
+c盘满了没法安装，清理下c盘,安装完毕，docker引擎启动不起来
+
 后续计划：完成文件上传，生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
 
 
