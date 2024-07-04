@@ -178,4 +178,14 @@
       item_pic_path = #{itemPicPath,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--
+  void insertPathList(
+		@Param("projectId") Integer projectId,
+		@Param("detailPicturePathList") List<String> detailPicturePathList);
+   -->
+  <insert id="insertPathList">
+    insert into t_project_item_pic (projectid, item_pic_path)
+    values
+    <foreach collection="detailPicturePathList" item="detailPath" separator=",">(#{projectId},#{detailPath})</foreach>
+  </insert>
 </mapper>

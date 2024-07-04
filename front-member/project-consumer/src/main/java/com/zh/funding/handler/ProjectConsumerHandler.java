@@ -119,28 +119,20 @@ public class ProjectConsumerHandler {
 			@RequestParam("returnPicture") MultipartFile returnPicture) throws IOException {
 		
 		// 1.执行文件上传
-		ResultEntity<String> uploadReturnPicResultEntity = fdfsRemoteService.uploadFileToDFS(
-				returnPicture);
-		
 		// 2.返回上传的结果
-		return uploadReturnPicResultEntity;
+		return CrowdUtil.uploadFile(returnPicture);
 	}
 	
 	@RequestMapping("/create/project/information")
 	public String saveProjectBasicInfo(
-			
 			// 接收除了上传图片之外的其他普通数据
 			ProjectVO projectVO, 
-			
 			// 接收上传的头图
-			MultipartFile headerPicture, 
-			
+			MultipartFile headerPicture,
 			// 接收上传的详情图片
-			List<MultipartFile> detailPictureList, 
-			
+			List<MultipartFile> detailPictureList,
 			// 用来将收集了一部分数据的ProjectVO对象存入Session域
 			HttpSession session,
-			
 			// 用来在当前操作失败后返回上一个表单页面时携带提示消息
 			ModelMap modelMap
 			) throws IOException {
@@ -158,8 +150,7 @@ public class ProjectConsumerHandler {
 			
 		}
 		// 3.如果用户确实上传了有内容的文件，则执行上传
-		ResultEntity<String> uploadHeaderPicResultEntity = fdfsRemoteService.uploadFileToDFS(
-				headerPicture);
+		ResultEntity<String> uploadHeaderPicResultEntity = CrowdUtil.uploadFile(headerPicture);
 		
 		String result = uploadHeaderPicResultEntity.getResult();
 		
@@ -204,7 +195,7 @@ public class ProjectConsumerHandler {
 			}
 			
 			// 6.执行上传
-			ResultEntity<String> detailUploadResultEntity = fdfsRemoteService.uploadFileToDFS(
+			ResultEntity<String> detailUploadResultEntity = CrowdUtil.uploadFile(
 					detailPicture);
 			
 			// 7.检查上传结果

@@ -4,8 +4,12 @@ import cn.hutool.core.util.RandomUtil;
 import com.zh.funding.constant.CrowdConstant;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -13,8 +17,11 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import cn.hutool.core.util.StrUtil;
+import org.springframework.web.multipart.MultipartFile;
 
 public class CrowdUtil {
+    private static final String UPLOAD_DIR = "/path/to/your/upload/directory/";
+
     private static boolean mismatch(String str, String regex){
         if (StrUtil.isBlank(str)) {
             return true;
@@ -68,5 +75,23 @@ public class CrowdUtil {
         System.out.println("*******发送短信验证码成功，验证码:" + code);
         // 返回ok
         return ResultEntity.successWithData(code);
+    }
+
+    public static ResultEntity<String> uploadFile(MultipartFile file) {
+        if (file.isEmpty()) {
+            return ResultEntity.failed("File is empty");
+        }
+
+        try {
+            // 获取文件名并保存
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOAD_DIR + file.getOriginalFilename());
+            Files.write(path, bytes);
+
+            // 返回文件保存的路径或其他信息
+            return ResultEntity.successWithData(path.toString());
+        } catch (IOException e) {
+            return ResultEntity.failed("Could not upload the file: " + e.getMessage());
+        }
     }
 }
