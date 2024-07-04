@@ -18,8 +18,7 @@ a web for Crowdfunding , Java8
 | fdfs-provider           | 6000 |
 | order-consumer          | 7000 |
 | pay-consumer            | 8000 |
-| Nginx                   | 80   |
-| zuul                    | 9000 |
+| zuul                    | 80   |
 
 ![img](https://ucc.alicdn.com/pic/developer-ecology/8f2f08de0b4442f1b93a8c169deb7c04.png)
 

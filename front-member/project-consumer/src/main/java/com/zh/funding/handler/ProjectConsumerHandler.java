@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.zh.funding.frontapi.MySQLRemoteService;
-import com.zh.funding.frontapi.FdfsRemoteService;
 import com.zh.funding.constant.CrowdConstant;
 import com.zh.funding.frontentity.vo.MemberConfirmInfoVO;
 import com.zh.funding.frontentity.vo.MemberLoginVO;
@@ -26,9 +25,6 @@ import com.zh.funding.util.ResultEntity;
 
 @Controller
 public class ProjectConsumerHandler {
-	
-	@Autowired
-	private FdfsRemoteService fdfsRemoteService;
 	
 	@Autowired
 	private MySQLRemoteService mySQLRemoteService;
