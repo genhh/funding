@@ -64,7 +64,7 @@ public class ProjectConsumerHandler {
 		session.removeAttribute(CrowdConstant.ATTR_NAME_TEMPLE_PROJECT);
 		
 		// 8.如果远程保存成功则跳转到最终完成页面
-		return "redirect:http://127.0.0.1/project/create/success";
+		return "redirect:http://www.zh.test.com/project/create/success";
 	}
 	
 	@ResponseBody

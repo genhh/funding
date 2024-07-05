@@ -237,6 +237,20 @@ tobato/centos7_fdfs镜像有问题，他里面的nginx启动失败,但是官网�
 
 后续计划：~~完成文件上传~~，->搞不定了，随便搞个简单的上传保存功能算了
 
+无法访问org.springframework.web.multipart.MultipartFile->还得手动引入springCore
+
+There was an unexpected error (type=Internal Server Error, status=500).
+Exception evaluating SpringEL expression: "session.loginMember.username"
+
+登录重定位到参杂计算机名的url前缀地址中，，，有点奇怪,把127映射了地址之后就变成这样了，映射去掉，发起项目模块也去掉，还是这样。
+fastdfs yml配置文件里写了一段关于zuul的配置，里面有一部分crowd-auth的配置，去掉重编译看看行不行,还是不行。
+发现是一开始就有，只不过因为一开始就是直接访问的ip:port服务地址，所以没事，后面直接访问域名就会有这种问题。
+
+zuul模块里设置add-host-header: true保证网关前面域名不变即可,之前的sensitive-headers: "*"好像是太老了失效了
+
+为什么有时候单独重启auth模块zuul模块就会崩掉，可能是改代码了，只改html好像就没事，也不行，一访问其他新页面就报错
+
+发起众筹测试成功
 
 生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
 

@@ -19,8 +19,9 @@ import java.util.concurrent.TimeUnit;
 import cn.hutool.core.util.StrUtil;
 import org.springframework.web.multipart.MultipartFile;
 
+
 public class CrowdUtil {
-    private static final String UPLOAD_DIR = "/path/to/your/upload/directory/";
+    private static final String UPLOAD_DIR = "E:\\JavaProject\\funding\\file\\";
 
     private static boolean mismatch(String str, String regex){
         if (StrUtil.isBlank(str)) {
