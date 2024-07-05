@@ -241,7 +241,7 @@ tobato/centos7_fdfs镜像有问题，他里面的nginx启动失败,但是官网�
 
 There was an unexpected error (type=Internal Server Error, status=500).
 Exception evaluating SpringEL expression: "session.loginMember.username"
-
+## 17th day
 登录重定位到参杂计算机名的url前缀地址中，，，有点奇怪,把127映射了地址之后就变成这样了，映射去掉，发起项目模块也去掉，还是这样。
 fastdfs yml配置文件里写了一段关于zuul的配置，里面有一部分crowd-auth的配置，去掉重编译看看行不行,还是不行。
 发现是一开始就有，只不过因为一开始就是直接访问的ip:port服务地址，所以没事，后面直接访问域名就会有这种问题。
