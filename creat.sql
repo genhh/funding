@@ -104,6 +104,7 @@ projectid int(11),
 typeid int(11),
 primary key (id)
 );
+
 # 标签表
 create table t_tag(
 id int(11) not null auto_increment,
@@ -111,6 +112,7 @@ pid int(11),
 name varchar(255),
 primary key (id)
 );
+
 # 项目标签中间表
 create table t_project_tag(
 id int(11) not null auto_increment,
@@ -118,6 +120,7 @@ projectid int(11),
 tagid int(11),
 primary key (id)
 );
+
 # 项目表
 create table t_project(
 id int(11) not null auto_increment,
@@ -136,6 +139,7 @@ follower int(11) comment '关注人数',
 header_picture_path varchar(255) comment '头图路径',
 primary key (id)
 );
+
 # 项目表项目详情图片表
 create table t_project_item_pic
 (
@@ -144,6 +148,7 @@ projectid int(11),
 item_pic_path varchar(255),
 primary key (id)
 );
+
 # 项目发起人信息表
 create table t_member_launch_info(
 id int(11) not null auto_increment,
@@ -154,6 +159,7 @@ phone_num varchar(255) comment '联系电话',
 service_num varchar(255) comment '客服电话',
 primary key (id)
 );
+
 # 回报信息表
 create table t_return(
 id int(11) not null auto_increment,
@@ -170,6 +176,7 @@ returndate int(11) comment '项目结束后多少天向支持者发送回报',
 describ_pic_path varchar(255) comment '说明图片路径',
 primary key (id)
 );
+
 #  发起人确认信息表
 create table t_member_confirm_info(
 id int(11) not null auto_increment,
@@ -177,4 +184,43 @@ memberid int(11) comment '会员 id',
 paynum varchar(200) comment '易付宝企业账号',
 cardnum varchar(200) comment '法人身份证号',
 primary key (id)
+);
+
+# 订单表
+drop table if exists t_order;
+CREATE TABLE t_order(
+	id INT NOT NULL AUTO_INCREMENT COMMENT '主键',
+	order_num CHAR(100) COMMENT '订单号',
+	pay_order_num CHAR(100) COMMENT '支付宝流水号',
+	order_amount DOUBLE(10,5) COMMENT '订单金额',
+	invoice INT COMMENT '是否开发票（0 不开， 1 开） ',
+	invoice_title CHAR(100) COMMENT '发票抬头',
+	order_remark CHAR(100) COMMENT '订单备注',
+	address_id CHAR(100) COMMENT '收货地址 id',
+	PRIMARY KEY (id)
+);
+
+# 收货地址表
+drop table if exists t_address;
+CREATE TABLE t_address(
+	id INT NOT NULL AUTO_INCREMENT COMMENT '主键',
+	receive_name CHAR(100) COMMENT '收件人',
+	phone_num CHAR(100) COMMENT '手机号',
+	address CHAR(200) COMMENT '收货地址',
+	member_id INT COMMENT '用户 id',
+	PRIMARY KEY (id)
+);
+
+# 项目信息表
+drop table if exists t_order_project;
+CREATE TABLE t_order_project(
+	id INT NOT NULL AUTO_INCREMENT COMMENT '主键',
+	project_name CHAR(200) COMMENT '项目名称',
+	launch_name CHAR(100) COMMENT '发起人',
+	return_content CHAR(200) COMMENT '回报内容',
+	return_count INT COMMENT '回报数量',
+	support_price INT COMMENT '支持单价',
+	freight INT COMMENT '配送费用',
+	order_id INT COMMENT '订单表的主键',
+	PRIMARY KEY (`id`)
 );
