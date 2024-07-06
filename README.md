@@ -1,6 +1,13 @@
 # CrowdFunding
 a web for Crowdfunding , Java8
-## 技术总结
+## 项目总结
+后续总结一下
+### 项目简介
+
+### 项目细节/创新点
+
+### 项目难点
+
 | 注册中心   | 消息队列  | 分布式文件系统 |
 |--------|-------|------|
 | Eureka | Kafka | HDFS |
@@ -263,7 +270,9 @@ Load balancer does not have available server for client: crowd-mysql zuul怎么�
 tag表和type表是空的
 tag表中id和pid是怎么回事，哪个是标签身份识别id?->看了别人的经验发现是假表
 
-展示项目测试暂停，，先做后面的功能吧
+Not allowed to load local resource->图片存到本地为了安全不让访问绝对路径，改成相对路径也不行，，，后面再说
+
+展示项目测试半成功(图片还没法显示，但是项目显示没问题)
 
 生成订单:
 

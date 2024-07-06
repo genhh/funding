@@ -1,9 +1,7 @@
 package com.zh.funding.frontapi;
 
 import com.zh.funding.frontentity.po.MemberPO;
-import com.zh.funding.frontentity.vo.DetailProjectVO;
-import com.zh.funding.frontentity.vo.PortalTypeVO;
-import com.zh.funding.frontentity.vo.ProjectVO;
+import com.zh.funding.frontentity.vo.*;
 import com.zh.funding.util.ResultEntity;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,4 +26,13 @@ public interface MySQLRemoteService {
 
     @RequestMapping("/get/project/detail/remote/{projectId}")
     public ResultEntity<DetailProjectVO> getDetailProjectVORemote(@PathVariable("projectId") Integer projectId);
+
+    @RequestMapping("/get/order/project/vo/remote")
+    ResultEntity<OrderProjectVO> getOrderProjectVORemote(@RequestParam("projectId") Integer projectId, @RequestParam("returnId") Integer returnId);
+
+    @RequestMapping("/get/address/vo/remote")
+    ResultEntity<List<AddressVO>> getAddressVORemote(@RequestParam("memberId") Integer memberId);
+
+    @RequestMapping("/save/address/remote")
+    ResultEntity<String> saveAddressRemote(@RequestBody AddressVO addressVO);
 }
