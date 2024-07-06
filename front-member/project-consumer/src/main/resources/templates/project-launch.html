@@ -217,24 +217,23 @@
 												<label for="inputEmail3" class="col-sm-2 control-label">分类信息</label>
 												<div class="col-sm-10">
 													<label class="radio-inline">
-													<input type="checkbox" name="typeIdList" 
-														id="inlineRadio1"
-														value="1"> 科技
+													<input class="typeIdList" type="checkbox"
+														id="0" value="1"> 科技
 													</label>
 													<label class="radio-inline">
-													<input
-														type="checkbox" name="typeIdList"
-														id="inlineRadio2" value="2" checked="checked"> 设计
+													<input class="typeIdList"
+														type="checkbox"
+														id="1"  value="2">> 设计
 													</label>
 													<label class="radio-inline">
-													<input
-														type="checkbox" name="typeIdList"
-														id="inlineRadio3" value="3"> 公益
+													<input class="typeIdList"
+														type="checkbox"
+														id="2" value="3">> 公益
 													</label>
 													<label class="radio-inline">
-													<input
-														type="checkbox" name="typeIdList"
-														id="inlineRadio3" value="4" checked="checked"> 农业
+													<input class="typeIdList"
+														type="checkbox"
+														id="3"  value="4">> 农业
 													</label>
 												</div>
 											</div>
@@ -243,17 +242,17 @@
 	<div class="col-sm-10">
 		<ul style="list-style: none; padding-left: 0;">
 			<li style="margin: 10px 0">[手机] <span
-				class="tagLable label-txt" id="4">大屏</span> <span
-				class="tagLable label-txt" id="5">美颜</span> <span
-				class="tagLable label-txt" id="6">续航</span>
+				class="tagLable label-txt" id="5" name="tagId">大屏</span> <span
+				class="tagLable label-txt" id="6" name="tagId">美颜</span> <span
+				class="tagLable label-txt" id="7" name="tagId">续航</span>
 			</li>
 			<li style="margin: 10px 0">[数码] <span
-				class="tagLable label-txt" id="7">高解析度</span> <span
-				class="tagLable label-txt" id="8">高清</span>
+				class="tagLable label-txt" id="8" name="tagId">高解析度</span> <span
+				class="tagLable label-txt" id="9" name="tagId">高清</span>
 			</li>
 			<li style="margin: 10px 0">[电脑] <span
-				class="tagLable label-txt" id="9">大内存</span> <span
-				class="tagLable label-txt" id="10">固态</span>
+				class="tagLable label-txt" id="10" name="tagId">大内存</span> <span
+				class="tagLable label-txt" id="11" name="tagId">固态</span>
 			</li>
 		</ul>
 	</div>
@@ -391,6 +390,8 @@
 		
 		// 声明全局变量用于存储选中的标签的id
 		var tagIdList = new Array();
+		// 声明全局变量用于存储选中的类别的id
+		var typeIdList2 = new Array();
 
 		$(".tagLable").click(function() {
 
@@ -404,6 +405,21 @@
 			checkExitsts(tagIdList, tagId);
 
 			console.log(tagIdList);
+
+		});
+
+		$(".typeIdList").click(function() {
+
+			// 标签文本显示框如果有selected就去掉，如果没有就加上
+			$(this).toggleClass("selected");
+
+			// 获取当前文本显示框的id（也就是标签的id）
+			var typeId = this.id;
+
+			// 判定tagId是否在数组中，如果在则删除，如果不在则添加
+			checkExitsts(typeIdList2, typeId);
+
+			console.log(typeIdList2);
 
 		});
 		
@@ -476,16 +492,17 @@
 		
 		// 点击下一步按钮提交表单
 		$("#submitBtn").click(function(){
-			
 			// 将表单中标签id的值组成的数组转换成表单内的隐藏域
-			for(var i = 0; i < tagIdList.length; i++) {
-				var tagId = tagIdList[i];
-				
-				var hiddenInputHTML = "<input type='hidden' name='tagIdList' value='"+tagId+"' />";
-				
+				var tagIdListStr = tagIdList.join(',');
+				var typeIdListStr = typeIdList2.join(',');
+
+				var hiddenInputHTML = "<input type='hidden' name='tagIdList' value='"+tagIdListStr+"' />";
+				var hiddenInputHTML2 = "<input type='hidden' name='typeIdList' value='"+typeIdListStr+"' />";
+
 				$("#projectForm").append(hiddenInputHTML);
-			}
-			
+				$("#projectForm").append(hiddenInputHTML2);
+
+
 			// 提交表单
 			$("#projectForm").submit();
 		});

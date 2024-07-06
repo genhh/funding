@@ -252,7 +252,18 @@ zuul模块里设置add-host-header: true保证网关前面域名不变即可,之
 
 发起众筹测试成功
 
+网关要最后启动，不然老报错找不到模块,,,是因为每次都是按字母顺序启动，导致auth第一个启动，然后注册中心找不到就导致zuul报错，那为什么是重启zuul而非尤瑞卡就好了？
+idea社区版是真难用，启动顺序也调不了，之前的rundashboard也没了。**注册中心要第一个启动**
 
+显示真实项目无法显示，原因是表里没分类数据，再深究发现是发起众筹时传入数据不足，数据格式设计有问题,是前端代码project-launch.html写的有问题，后面改一下
+
+Load balancer does not have available server for client: crowd-mysql zuul怎么感觉有点不太行，老是出这种问题
+
+## 17th day
+tag表和type表是空的
+tag表中id和pid是怎么回事，哪个是标签身份识别id?->看了别人的经验发现是假表
+
+展示项目测试暂停，，先做后面的功能吧
 
 计划：后面出一张实体类的关系图
 生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件

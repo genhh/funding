@@ -22,6 +22,7 @@ public interface MySQLRemoteService {
     public ResultEntity<String> saveMember(@RequestBody MemberPO memberPO);
     @RequestMapping("/save/project/vo/remote")
     ResultEntity<String> saveProjectVORemote(@RequestBody ProjectVO projectVO, @RequestParam("memberId") Integer memberId);
+    //@RequestMapping("/get/portal/type/project/data/remote")
     @RequestMapping("/get/portal/type/project/data/remote")
     public ResultEntity<List<PortalTypeVO>> getPortalTypeProjectDataRemote();
 

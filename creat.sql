@@ -92,6 +92,11 @@ name varchar(255) comment '分类名称',
 remark varchar(255) comment '分类介绍',
 primary key (id)
 );
+INSERT INTO `project_crowd`.`t_type` (`id`, `name`) VALUES ('1', '科技');
+INSERT INTO `project_crowd`.`t_type` (`id`, `name`) VALUES ('2', '设计');
+INSERT INTO `project_crowd`.`t_type` (`id`, `name`) VALUES ('3', '公益');
+INSERT INTO `project_crowd`.`t_type` (`id`, `name`) VALUES ('4', '农业');
+
 # 项目分类中间表
 create table t_project_type(
 id int not null auto_increment,
