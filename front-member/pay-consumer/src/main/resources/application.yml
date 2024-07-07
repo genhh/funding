@@ -15,3 +15,14 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:1000/eureka
+
+ali:
+  pay:
+    alipay-public-key:
+    app-id:
+    charset: utf-8
+    gateway-url: https://openapi.alipaydev.com/gateway.do
+    merchant-private-key:
+    notify-url: http://grekcv.natappfree.cc/pay/notify
+    return-url: http://www.crowd.com/pay/return
+    sign-type: RSA2
