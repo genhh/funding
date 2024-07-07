@@ -18,11 +18,11 @@ eureka:
 
 ali:
   pay:
-    alipay-public-key:
-    app-id:
+    alipay-public-key: ${alipay.publicKey}
+    app-id: ${alipay.id}
     charset: utf-8
     gateway-url: https://openapi.alipaydev.com/gateway.do
-    merchant-private-key:
+    merchant-private-key: ${alipay.privateKey}
     notify-url: http://grekcv.natappfree.cc/pay/notify
     return-url: http://www.crowd.com/pay/return
     sign-type: RSA2
