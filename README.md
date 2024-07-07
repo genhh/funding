@@ -8,6 +8,9 @@ a web for Crowdfunding , Java8
 
 ### 项目难点
 
+### 改进点
+修复一定量的原有错误， 曾尝试用fastFDS代替OSS, zuul换成gateway?, 增加监控中心?，链路中心？mybatis换成mybatisPlus?增加kafka?
+
 | 注册中心   | 消息队列  | 分布式文件系统 |
 |--------|-------|------|
 | Eureka | Kafka | HDFS |
