@@ -287,6 +287,10 @@ No message available->order包问题，其依赖devtools版本貌似有多个->�
 
 t_member_launch_info memberid应该加一个唯一约束
 
+支付宝接口有点看不懂，后面有空再看吧
+
+接下来解决一下密钥存放的问题
+
 计划：后面出一张实体类的关系图
 生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
 

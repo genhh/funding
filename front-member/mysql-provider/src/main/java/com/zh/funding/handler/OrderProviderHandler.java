@@ -2,6 +2,7 @@ package com.zh.funding.handler;
 
 import java.util.List;
 
+import com.zh.funding.frontentity.vo.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,6 +67,22 @@ public class OrderProviderHandler {
 			return ResultEntity.failed(e.getMessage());
 		}
 		
+	}
+
+	@RequestMapping("/save/order/remote")
+	ResultEntity<String> saveOrderRemote(@RequestBody OrderVO orderVO) {
+
+		try {
+			orderService.saveOrder(orderVO);
+
+			return ResultEntity.successWithoutData();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			return ResultEntity.failed(e.getMessage());
+		}
+
 	}
 
 }

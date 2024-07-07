@@ -3,6 +3,9 @@ package com.zh.funding.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zh.funding.frontentity.po.OrderPO;
+import com.zh.funding.frontentity.po.OrderProjectPO;
+import com.zh.funding.frontentity.vo.OrderVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,6 +71,30 @@ public class OrderServiceImpl implements OrderService {
 		
 		addressPOMapper.insert(addressPO);
 		
+	}
+
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+	@Override
+	public void saveOrder(OrderVO orderVO) {
+
+		OrderPO orderPO = new OrderPO();
+
+		BeanUtils.copyProperties(orderVO, orderPO);
+
+		OrderProjectPO orderProjectPO = new OrderProjectPO();
+
+		BeanUtils.copyProperties(orderVO.getOrderProjectVO(), orderProjectPO);
+
+		// 保存orderPO自动生成的主键是orderProjectPO需要用到的外键
+		orderPOMapper.insert(orderPO);
+
+		// 从orderPO中获取orderId
+		Integer id = orderPO.getId();
+
+		// 将orderId设置到orderProjectPO
+		orderProjectPO.setOrderId(id);
+
+		orderProjectPOMapper.insert(orderProjectPO);
 	}
 
 }
