@@ -23,6 +23,6 @@ ali:
     charset: utf-8
     gateway-url: https://openapi.alipaydev.com/gateway.do
     merchant-private-key: ${alipay.privateKey}
-    notify-url: http://grekcv.natappfree.cc/pay/notify
-    return-url: http://www.crowd.com/pay/return
+    notify-url: http://server.natappfree.cc/pay/notify
+    return-url: http://www.zh.test.com/pay/return
     sign-type: RSA2

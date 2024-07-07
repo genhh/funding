@@ -289,7 +289,18 @@ t_member_launch_info memberid应该加一个唯一约束
 
 支付宝接口有点看不懂，后面有空再看吧
 
-接下来解决一下密钥存放的问题
+接下来解决一下密钥存放的问题, idea的配置里面设置环境变量即可
+
+[natapp 1分钟入门教程](https://natapp.cn/article/natapp_newbie)
+
+支付宝沙箱调用报错:502 Bad Gateway
+The proxy server received an invalid response from an upstream server. Sorry for the inconvenience.
+Please report this message and include the following information to us.
+Thank you very much!，好像是沙箱有问题，，
+
+网上搜了下发现相关信息：
+
+为保证沙箱长期稳定，每周日中午12点至每周一中午12点沙箱环境进行维护，期间可能出现不可用，敬请谅解。建议更换其他时间段进行测试。->那就之后再说
 
 计划：后面出一张实体类的关系图
 生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
