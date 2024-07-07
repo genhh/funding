@@ -274,7 +274,15 @@ Not allowed to load local resource->图片存到本地为了安全不让访问�
 
 展示项目测试半成功(图片还没法显示，但是项目显示没问题)
 
-生成订单:
+生成订单: 项目启动失败，访问页面会报错There was an unexpected error (type=Not Found, status=404).
+## 18th day
+No message available->order包问题，其依赖devtools版本貌似有多个->删掉对应依赖->那为什么之前还可以正常运行?->还是不行->zuul yml配置文件缩进不对，看漏了
+
+项目详情显示路径重定向有问题，把前端url路径改了一下好了
+
+订单支持报错:nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 3
+
+t_member_launch_info memberid应该加一个唯一约束
 
 计划：后面出一张实体类的关系图
 生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件

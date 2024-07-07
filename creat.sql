@@ -159,6 +159,8 @@ phone_num varchar(255) comment '联系电话',
 service_num varchar(255) comment '客服电话',
 primary key (id)
 );
+ALTER TABLE `project_crowd`.`t_member_launch_info` ADD UNIQUE INDEX `memberid_UNIQUE` (`memberid` ASC) VISIBLE;
+
 
 # 回报信息表
 create table t_return(

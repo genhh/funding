@@ -25,8 +25,8 @@ zuul:
       service-id: crowd-pay
       path: /pay/**
     crowd-order:
-    service-id: crowd-order
-    path: /order/**
+      service-id: crowd-order
+      path: /order/**
 ribbon:
   ReadTimeout: 10000
   ConnectTimeout: 10000

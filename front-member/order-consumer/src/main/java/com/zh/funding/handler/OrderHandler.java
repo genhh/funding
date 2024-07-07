@@ -41,7 +41,7 @@ public class OrderHandler {
 		Integer returnCount = orderProjectVO.getReturnCount();
 		
 		// 4.重定向到指定地址，重新进入确认订单页面
-		return "redirect:http://www.crowd.com/order/confirm/order/"+returnCount;
+		return "redirect:http://www.zh.test.com/order/confirm/order/"+returnCount;
 	}
 	
 	@RequestMapping("/confirm/order/{returnCount}")
