@@ -302,6 +302,13 @@ Thank you very much!，好像是沙箱有问题，，
 
 为保证沙箱长期稳定，每周日中午12点至每周一中午12点沙箱环境进行维护，期间可能出现不可用，敬请谅解。建议更换其他时间段进行测试。->那就之后再说
 
+## 19th day
+测试使用spring-kafka组件， [kafka使用](https://cloud.tencent.com/developer/article/1542310)
+
+想设置和总版本2.1.6一样的kafka版本，但2.1.6的spring-kafka-test中的@EmbeddedKafka没有ports属性，还是按原作者版本走的好
+
+测试skyWalking组件 []()
+
 计划：后面出一张实体类的关系图
 生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
 

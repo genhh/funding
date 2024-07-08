@@ -23,6 +23,7 @@
         <module>order-consumer</module>
         <module>pay-consumer</module>
         <module>fast-dfs-provider</module>
+        <module>kafka</module>
     </modules>
 
     <properties>

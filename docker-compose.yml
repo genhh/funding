@@ -1,0 +1,64 @@
+#docker-compose 文件所用版本号 这个需要注意 不同版本写法还是有点小区别的
+version: '3'
+services:
+  #依赖于es存储
+  elasticsearch7:
+    image: elasticsearch:7.8.0
+    container_name: elasticsearch7
+    restart: always
+    ports:
+      #es 外暴映射端口
+      - 9200:9200
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - TZ=Asia/Shanghai
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - skywalking
+    volumes:
+      - elasticsearch7:/usr/share/elasticsearch/data
+  #构建SkyWalking 服务
+  oap:
+    image: apache/skywalking-oap-server:8.0.1-es7
+    container_name: oap
+    depends_on:
+      - elasticsearch7
+    links:
+      - elasticsearch7
+    restart: always
+    ports:
+      - 11800:11800
+      - 12800:12800
+    networks:
+      - skywalking
+    volumes:
+      - ./ext-config:/skywalking/ext-config
+  #SkyWalkIng 可视化web界面
+  ui:
+    image: apache/skywalking-ui:8.0.1
+    container_name: ui
+    depends_on:
+      - oap
+    links:
+      - oap
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      SW_OAP_ADDRESS: oap:12800
+      security.user.admin.password: lei..
+    networks:
+      - skywalking
+
+networks:
+  skywalking:
+    driver: bridge
+
+volumes:
+  elasticsearch7:
+    driver: local
