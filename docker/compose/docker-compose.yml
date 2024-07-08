@@ -1,5 +1,5 @@
-#docker-compose 文件所用版本号 这个需要注意 不同版本写法还是有点小区别的
-version: '3'
+#docker-compose 文件所用版本号,高版本已经不需要指定version
+#version: '3'
 services:
   #依赖于es存储
   elasticsearch7:

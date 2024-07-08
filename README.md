@@ -307,8 +307,10 @@ Thank you very much!，好像是沙箱有问题，，
 
 想设置和总版本2.1.6一样的kafka版本，但2.1.6的spring-kafka-test中的@EmbeddedKafka没有ports属性，还是按原作者版本走的好
 
-测试skyWalking组件 []()
-
+测试skyWalking组件 [skyWalking](https://blog.csdn.net/leilei1366615/article/details/108566178)
+```
+docker-compose up -d # 后台运行compose.yml构建镜像
+```
 计划：后面出一张实体类的关系图
 生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
 
