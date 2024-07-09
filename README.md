@@ -3,19 +3,34 @@ a web for Crowdfunding , Java8
 ## 项目总结
 后续总结一下
 ### 项目简介
+一个众筹网站，
+
+后台为单体项目，采用SSM架构，使用 SpringMVC 作为 Web 层框架，MyBatis 作为持久化层框架。 MyBatis 的 PageHelper 插件实现数据的分页显示。
+
+实现功能：管理员登录，管理员维护，角色维护，菜单维护，给管理员分配角色，使用 SpringSecurity 接管项目的登录、登录检查、权限验证
+
+前台为微服务多模块，zuul/gateway作为网关，eureka作为注册中心，skyWalking作为链路监控中心，
+openFeign作为远程调用服务中心,Ribbon作为客户端负载均衡组件
+redis作为分布式缓存，通过内网穿透实现支付宝付款接口。
+
+实现功能：用户登录、注册，在 Zuul 中使用 ZuulFilter 实现登录状态检查，使用 SpringSession 解决分布式环境下 Session 不一致问题
+( Redis 作为 SpringSession 的 Session 库)，主页展示项目以及查看项目详情，支持项目-生成订单-调用支付宝支付接口
+
 
 ### 项目细节/创新点
 
 ### 项目难点
 
 ### 改进点
-修复一定量的原有错误， 曾尝试用fastFDS代替OSS, zuul换成gateway?, 增加监控中心?，链路中心？mybatis换成mybatisPlus?增加kafka?
+修复一定量的原有错误， 曾尝试用fastFDS代替OSS, zuul换成gateway?, 增加监控中心?，链路监控中心skywalking, 
+mybatis换成mybatisPlus?增加kafka?
 
-| 注册中心   | 消息队列  | 分布式文件系统 |
-|--------|-------|------|
-| Eureka | Kafka | HDFS |
-| Nacos  | RabbitMQ  |      |
-| Consul | ActiveMQ |      |
+| 注册中心      | 消息队列  | 分布式文件系统 |
+|-----------|-------|------|
+| Eureka    | Kafka | HDFS |
+| Nacos     | RabbitMQ  |      |
+| Consul    | ActiveMQ |      |
+| zookeeper |  |      |
 前台分布式端口设置
 
 | 服务                      | 端口   |
@@ -32,7 +47,9 @@ a web for Crowdfunding , Java8
 
 ![img](https://ucc.alicdn.com/pic/developer-ecology/8f2f08de0b4442f1b93a8c169deb7c04.png)
 
-## 1st day
+## 日志记录
+
+### 1st day
 create project and install dependencies
 - springMVC+mybatis+jsp+jQuery+SmartTomcat+zTree+layer弹层+pageHelper
 ```bash
@@ -44,7 +61,7 @@ mvn mybatis-generator:generate
 ```
 完成功能：搭建环境，反向生成mapper
 
-## 2nd day 
+### 2nd day 
 ResultEntity, request type judge, exception handle, js page;
 
 Tomcat 404 can't work, because servlet:2.5 and jsp:2.1.3 are too old;
@@ -57,13 +74,13 @@ Mybatis Generator make 5 repeat context in AdminMapper.xml;->delete->run success
 
 完成功能：搭建环境，管理员登录
 
-## 3rd day
+### 3rd day
 It's easier to coding when you follow controller->service->dao's order.--Top-down approach;
 
 DB navigator plugin not work;
 完成功能：登录检查
 
-## 4th day
+### 4th day
 PageHelper plugin config error in spring-persist-mybatis.xml;
 
 ->page plugin and search not work;
@@ -76,13 +93,13 @@ mybatis error:xxx with invalid types () or values ().->(忘了写无参构造函
 
 完成功能:分页显示账户信息, 添加、更新账户
 
-## 5th day
+### 5th day
 
 周日开会
 
 完成功能:删除账户(无提示直接删除); 角色分页，更新ing，删除ing, 查询用js实现; 权限管理菜单展示
 
-## 6th day
+### 6th day
 Page指令：非法出现多次出现的'contentType'具有不同的值-> jsp头声明统一即可解决
 
 nested exception is org.apache.ibatis.binding.BindingException:“roleIdList” not found 
@@ -94,7 +111,7 @@ roleId无法获取为null值，导致inner_role_auth表无法记录数据，把m
 
 完成功能：添加更新删除菜单节点，(但是侧边栏没有随之更新)
 
-## 7th day
+### 7th day
 引入 springSecurity.后所有网页都404,但是已经设置permitAll()了—>No-bean-named-springSecurityFilterChain-available->容器启动顺序问题
 ，->把所有配置放到springMVC ioc中
 
@@ -102,7 +119,7 @@ SpringSecurity遇到Bad Credentials
 
 org.springframework.beans.NotReadablePropertyException: Invalid property 'principal.originalAdmin'
 ->显示出来才发现，principal原来是我们自己封装的SecurityAdmin对象（admin-main.jsp忘了修改）
-## 8th day
+### 8th day
 SpringSecurity遇到Bad Credentials 且点击登录后302 not found ->换了密码编码方式为原先的md5+盐值处理即可成功登录
 
 但是菜单维护显示成了给用户分配角色的界面?-- new bug
@@ -111,7 +128,7 @@ SpringSecurity遇到Bad Credentials 且点击登录后302 not found ->换了密�
 
 有权限但是无法访问用户维护?->得等下一次刷新缓存登录才行
 
-## 9th day
+### 9th day
 开始搭建前台用户系统,技术栈:springBoot+springCloud
 
 Unsupported class file major version 61 ->jdk版本过高或springBoot版本过低，->升级springCloud和springBoot版本，->
@@ -121,7 +138,7 @@ Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and
 lang.TypeNotPresentException: Type org.springframework.test.context.junit.jupiter.SpringExtension not present->
 [重新选择test依赖](https://blog.csdn.net/W521125W/article/details/134919138)->jvm崩溃->把mvn的test关掉,然后重新install观察具体错误->
 TestEngine with ID 'junit-jupiter' failed to discover tests
-## 10th day
+### 10th day
 ->换成junit-engine
 ->java.lang.AbstractMethodError: Receiver class org.springframework.boot.logging.logback.RootLogLevelConfigurator does 
 not define or inherit an implementation of the resolved method 'abstract void configure(ch.qos.logback.classic.LoggerContext)' 
@@ -138,11 +155,11 @@ org.springframework.web.servlet.DispatcherServlet.setEnableLoggingRequestDetails
 
 idea是真麻烦，每次install不了几次就得重启，吃内存吃的有点离谱
 
-## 11th day
+### 11th day
 
 搭建远程调用接口模块，授权登录模块，Mysql处理数据模块，redis共享缓存模块。。。
 
-## 12th day
+### 12th day
 
 用docker 创建redis镜像容器进行redis可行性测试，网关模块搭建
 
@@ -159,14 +176,14 @@ springSession主要是基于Redis来实现分布式会话管理。接管TomCat
 
 计划用docker启动fastDFS镜像容器代替阿里云oss
 
-## 13th day
+### 13th day
 [FastDFSClient github](https://github.com/tobato/FastDFS_Client)
 
 报错 util-1.0-SNAPSHOT.jar.396611389894939640.tmp:是对应java程序一直在运行无法关闭，最后通过任务管理器强制关闭然后清空对应本地maven
 
 完成登录，注册，发送验证码功能
 
-## 14th day
+### 14th day
 
 Error invoking remote method 'docker-start-container': Error: (HTTP code 500) server error - Ports are not available: 
 exposing port TCP 0.0.0.0:6379 -> 0.0.0.0:0: listen tcp 0.0.0.0:6379: bind: Only one usage of each socket address (protocol/network address/port) 
@@ -181,7 +198,7 @@ Load balancer does not have available server for client: crowd-redis
 
 前一周上午都有其他事没有时间
 
-## 15th day
+### 15th day
 [MultipartFile类讲解](https://blog.csdn.net/weixin_45393094/article/details/112056436)
 
 要用fastFDS存储数据，就要引入Nginx和网关配合，有点复杂 [Nginx+springCloud](https://cloud.tencent.com/developer/article/1931848)
@@ -234,7 +251,7 @@ storge 23000口一直启动不起来
 tracker_server 和bind_addr都写容器自己内部eth0对应ip
 
 docker容器本地可以上传了，但是外部好像还访问不了,503error
-## 16th day
+### 16th day
 dockerV4.29之后才在windows下支持host模式
 
 [docker官网教程](https://docs.docker.com/network/network-tutorial-host/#goal)
@@ -251,7 +268,7 @@ tobato/centos7_fdfs镜像有问题，他里面的nginx启动失败,但是官网�
 
 There was an unexpected error (type=Internal Server Error, status=500).
 Exception evaluating SpringEL expression: "session.loginMember.username"
-## 17th day
+### 17th day
 登录重定位到参杂计算机名的url前缀地址中，，，有点奇怪,把127映射了地址之后就变成这样了，映射去掉，发起项目模块也去掉，还是这样。
 fastdfs yml配置文件里写了一段关于zuul的配置，里面有一部分crowd-auth的配置，去掉重编译看看行不行,还是不行。
 发现是一开始就有，只不过因为一开始就是直接访问的ip:port服务地址，所以没事，后面直接访问域名就会有这种问题。
@@ -269,7 +286,7 @@ idea社区版是真难用，启动顺序也调不了，之前的rundashboard也�
 
 Load balancer does not have available server for client: crowd-mysql zuul怎么感觉有点不太行，老是出这种问题
 
-## 17th day
+### 18th day
 tag表和type表是空的
 tag表中id和pid是怎么回事，哪个是标签身份识别id?->看了别人的经验发现是假表
 
@@ -278,7 +295,7 @@ Not allowed to load local resource->图片存到本地为了安全不让访问�
 展示项目测试半成功(图片还没法显示，但是项目显示没问题)
 
 生成订单: 项目启动失败，访问页面会报错There was an unexpected error (type=Not Found, status=404).
-## 18th day
+### 19th day
 No message available->order包问题，其依赖devtools版本貌似有多个->删掉对应依赖->那为什么之前还可以正常运行?->还是不行->zuul yml配置文件缩进不对，看漏了
 
 项目详情显示路径重定向有问题，把前端url路径改了一下好了
@@ -302,17 +319,24 @@ Thank you very much!，好像是沙箱有问题，，
 
 为保证沙箱长期稳定，每周日中午12点至每周一中午12点沙箱环境进行维护，期间可能出现不可用，敬请谅解。建议更换其他时间段进行测试。->那就之后再说
 
-## 19th day
+### 20th day
 测试使用spring-kafka组件， [kafka使用](https://cloud.tencent.com/developer/article/1542310)
 
 想设置和总版本2.1.6一样的kafka版本，但2.1.6的spring-kafka-test中的@EmbeddedKafka没有ports属性，还是按原作者版本走的好
 
 测试skyWalking组件 [skyWalking](https://blog.csdn.net/leilei1366615/article/details/108566178)
+
 ```
 docker-compose up -d # 后台运行compose.yml构建镜像
 ```
+
+consul注册中心主要是健康检查和强一致性，用起来也不用搭server模块,直接用下载好的就行，默认端口8500
+
+
+### 21th day
+
 计划：后面出一张实体类的关系图
-生成订单，支付宝支付等功能，然后添加/更新其他springCloud组件
+然后添加/更新其他springCloud组件
 
 
 
